@@ -3,15 +3,22 @@
 while true
   do
     player_status=$(playerctl status --player=spotify 2> /dev/null)
-    player_icon=""
-
-    if [ $player_status = "Playing" ]; then
-        player_icon="";
+    
+    if [ $player_status = "No players found" ]
+        then
+            f=""
     else
-        player_icon=" ";
-    fi
+        player_icon=""
 
-    echo "$player_icon $(playerctl --player=spotify metadata artist) - $(playerctl --player=spotify metadata title)"
+        if [ $player_status = "Playing" ]
+            then
+                player_icon=""
+            else
+                player_icon=" "
+        fi
+
+        echo "$player_icon $(playerctl --player=spotify metadata artist) - $(playerctl --player=spotify metadata title)"
+    fi
 
     sleep 2 #sleep 2 seconds
 
