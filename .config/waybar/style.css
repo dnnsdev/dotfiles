@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     font-family: "MesloLGS Nerd Font";
-    font-size: 13px;
+    font-size: 14px;
     min-height: 0;
 }
 
@@ -12,25 +12,40 @@ window#waybar {
 }
 
 #window {
+    padding-top: 3px;
     font-weight: bold;
-    font-family: "MesloLGS Nerd Font";
 }
 
 #workspaces {
-    padding: 0 5px;
+    padding: 0 3px;
+    margin-right: 10px;
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 3px;
     background: transparent;
     color: white;
     border-top: 2px solid transparent;
 }
 
+    #workspaces button:hover {
+        box-shadow: none; /* Remove predefined box-shadow */
+        text-shadow: none; /* Remove predefined text-shadow */
+        background: none; /* Remove predefined background color (white) */
+        transition: none; /* Disable predefined animations */
+    }
+
 #workspaces button.focused {
     color: #eeeeee;
-    border-top: 2px solid #c9545d;
+    border-top: 4px solid #c9545d;
 }
+
+    #workspaces button.focused:hover {
+        box-shadow: none; /* Remove predefined box-shadow */
+        text-shadow: none; /* Remove predefined text-shadow */
+        background: none; /* Remove predefined background color (white) */
+        transition: none; /* Disable predefined animations */
+    }
 
 #mode {
     background: #64727D;

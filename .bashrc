@@ -115,6 +115,7 @@ alias cls='clear'
 alias multitail='multitail --no-repeat -c'
 alias freshclam='sudo freshclam'
 alias scrot='grim' # uses grim to take screenshot on wayland
+alias sscrot='slurp | grim -g - $outputFile' #slurp makes sure that an area can be selected and then piped into grim
 
 # Change directory aliases
 alias home='cd ~'

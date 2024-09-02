@@ -190,10 +190,10 @@ set $menu wofi --show drun  -i | xargs swaymsg exec --
 bindsym $mod+shift+b exec thorium-browser
 
 # file manager
-bindsym ctrl+$mod+f exec pcmanfm #dolphin
+bindsym ctrl+$mod+f exec thunar
 
 # open terminal
-bindsym $mod+t exec alacritty # or konsole
+bindsym $mod+t exec alacritty
 
 # open jetbrains rider
 bindsym ctrl+$mod+d exec "$HOME/Software/JetBrains\ Rider-2024.2.2/bin/rider.sh"

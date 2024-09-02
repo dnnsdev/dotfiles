@@ -10,11 +10,11 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 32,
-    "spacing": 2,
-    "margin-top": 0,
-    "margin-bottom": 0,
-    "modules-center": ["sway/workspaces"],
+    "height": 28,
+    "spacing": 1,
+    "margin-top": 1,
+    "margin-bottom": -5,
+    "modules-center": ["sway/workspaces","sway/window"],
     "modules-left": ["custom/hostname", "network", "memory", "temperature"],
     "modules-right": [ "custom/audio","tray","clock"],
 
@@ -32,6 +32,10 @@
             "focused": "",
             "default": ""
         }
+    },
+
+    "sway/window": {
+        "format": "{}"
     },
 
     "tray": {
