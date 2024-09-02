@@ -455,6 +455,10 @@ gitc() {
 	git commit -m "$1" -a
 }
 
+gitp() {
+	git push
+}
+
 # Check if the shell is interactive
 if [[ $- == *i* ]]; then
     # Bind Ctrl+f to insert 'zi' followed by a newline
