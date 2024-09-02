@@ -15,8 +15,8 @@
     "margin-top": 1,
     "margin-bottom": -5,
     "modules-center": ["sway/workspaces","sway/window"],
-    "modules-left": ["custom/hostname", "network", "memory", "temperature"],
-    "modules-right": [ "custom/audio","tray","clock"],
+    "modules-left": ["custom/hostname", "network", "memory", "temperature", "pulseaudio", "custom/media"],
+    "modules-right": ["tray","clock"],
 
     // Configuration for individual modules
     "sway/workspaces": {
@@ -32,6 +32,24 @@
             "focused": "",
             "default": ""
         }
+    },
+
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "{icon}  {volume}% {format_source}",
+        "format-bluetooth": "{icon} {volume}%{format_source}",
+        "format-bluetooth-muted": " {icon}{format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
     },
 
     "sway/window": {
@@ -69,12 +87,14 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
 
-    "custom/audio": {
-        "format": "{}",
-        "signal": 8,
-        "interval": "once",
-        "exec": "/home/dennis/.config/sway/audio.sh",
-        "on-click": "pavucontrol",
+    "custom/media": {
+        "exec": "$HOME/.config/waybar/scripts/playerctl.sh",
+        "format": " {}",
+        "max-length": 40,
+        // "escape": bool,
+        "on-click": "playerctl --player=spotify play-pause",
+        "on-scroll-up": "playerctl --player=spotify next",
+        "on-scroll-down": "playerctl --player=spotify previous"
     },
 
     "custom/hostname": {

@@ -61,24 +61,10 @@ window#waybar {
     font-weight: bold;
 }
 
-#cpu {
-}
-
-#memory {
-}
-
-#network {
-}
-
 #network.disconnected {
     background: #f53c3c;
 }
 
 #pulseaudio {
-}
-
-#pulseaudio.muted {
-}
-
-#tray {
+    margin-left: 5px;
 }

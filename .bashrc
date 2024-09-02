@@ -451,6 +451,10 @@ lazyg() {
 	git push
 }
 
+gitc() {
+	git commit -m "$1" -a
+}
+
 # Check if the shell is interactive
 if [[ $- == *i* ]]; then
     # Bind Ctrl+f to insert 'zi' followed by a newline
@@ -458,6 +462,9 @@ if [[ $- == *i* ]]; then
 fi
 
 export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:/.local/share/flatpak/exports/bin"
+
+# Export display for playerctl
+export DISPLAY=:0.0
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
