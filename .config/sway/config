@@ -1,0 +1,216 @@
+#==================================================================================#
+# Sway Window Manager Configuration File                                           #
+#----------------------------------------------------------------------------------#
+# License: Creative Commons Attribution 4.0 International                          #
+#                                                                                  #
+# No copyright- feel free to modify to your needs                                  #
+# Reload cfg: Super + Shift + C.                                                   #
+#==================================================================================#
+
+#========================#
+# Appearance and Theming #
+#========================#
+# Declare Colors:
+set $background #332b2b
+set $color_urgent #fb4934
+set $text_color #ffffff
+set $title_bg_unfocused #666666
+set $title_outline_active #0e844e
+set $title_outline_unfocused #332b2b
+
+# Set Colors:           Border                   Background          Text          Indicator             Child Border
+client.background       $background
+client.focused          $title_outline_active    $background         $text_color   $title_outline_active $title_outline_active
+client.focused_inactive $title_outline_unfocused $background         $text_color   $text_color           $title_outline_unfocused
+client.unfocused        $title_outline_unfocused $title_bg_unfocused $text_color   $title_outline_active
+client.urgent           $color_urgent            $color_urgent       $color_urgent $color_urgent         $color_urgent
+
+# Add gaps in between all application windows:
+gaps inner 5
+gaps outer 2
+
+# Configure the default border:
+default_border pixel 1
+
+# Set the Wallpaper:
+output * bg $HOME/.config/sway/wallpaper.jpg fill
+## TODO: Fix this so that wallpaper is random based on some files from folder
+
+#====================================#
+# Activate the panel                 #
+#====================================#
+# Set the waybar command for the application launcher:
+bar {
+    swaybar_command waybar
+}
+
+#====================================#
+# Keyboard Shortcuts (Sway-specific) #
+#====================================#
+# Set the modifier key to super:
+set $mod Mod4
+
+# Set the ALT key to $alt (since Mod1 is harder to remember):
+set $alt Mod1
+
+# Set up a shortcut to reload this config file:
+bindsym $mod+Shift+c reload
+
+# Quit your current session and return to the log-in manager/tty:
+bindsym $mod+Shift+e exec $HOME/.config/sway/exit.sh
+
+# Screen locking (automatic, with a timeout)
+set $lock swaylock -c 550000
+exec swayidle -w \
+    timeout 600 $lock \
+    timeout 570 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep $lock
+
+# Screen locking (manual)
+set $lock_screen exec bash ~/.config/sway/lock_screen.sh
+bindsym $mod+Escape exec $lock_screen
+
+#========================================#
+# Keyboard Shortcuts (Window Management) #
+#========================================#
+# Move focus to another window:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focus to another window ("cult of vim" version):
+bindsym $mod+j focus down
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+k focus up
+
+# Move the window:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Move the the window ("cult of vim" version):
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Hold the modifier key and hold the left/right mouse button
+# to drag or resize a window respectively. This isn't exclusive
+# to floating windows:
+floating_modifier $mod normal
+
+# Resizing containers:
+mode "resize" {
+    # Resize windows with arrow keys:
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # "cult of vim" version:
+    bindsym h resize shrink width 10px
+    bindsym j resize grow height 10px
+    bindsym k resize shrink height 10px
+    bindsym l resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#=================================#
+# Keyboard Shortcuts (Workspaces) #
+#=================================#
+# Switch to workspace
+set $ws1 "main"
+set $ws2 "dev"
+set $ws3 "media"
+set $ws4 "infra"
+
+# Move between workspaces
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+
+#=============================#
+# Keyboard Shortcuts (Layout) #
+#=============================#
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+f floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+tab focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+#=================================#
+# Keyboard Shortcuts              #
+#=================================#
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+#=============================================#
+# Keyboard Shortcuts to launch most used apps #
+#=============================================#
+# Set up wofi to replace dmenu as the launcher of choice:
+set $menu wofi --show drun  -i | xargs swaymsg exec --
+
+# launch browser
+bindsym $mod+shift+b exec thorium-browser
+
+# file manager
+bindsym ctrl+$mod+f exec pcmanfm #dolphin
+
+# open terminal
+bindsym $mod+t exec alacritty # or konsole
+
+# open jetbrains rider
+bindsym ctrl+$mod+d exec "$HOME/Software/JetBrains\ Rider-2024.2.2/bin/rider.sh"
+
+# open spotify (currently sucks so i'm using the browser instead)
+bindsym ctrl+$mod+s exec spotify --disable-gpu
+
+# Kill focused window:
+bindsym $mod+Shift+q kill
+
+# application launcher
+bindsym $mod+space exec $menu
+
+#======#
+# Misc #
+#======#
+exec "$HOME/.config/sway/conf.d/startup.sh"
+
+include /etc/sway/config-vars.d/*
+include /etc/sway/config.d/*
