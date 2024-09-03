@@ -11,5 +11,5 @@ if [[ ! $(pgrep -x "swaynag") ]]; then
         --button-border-size=1px \
         --border=#FCC99D \
         #--text=#092E47 \
-        --background=#282828
+        --background=#28282
 fi

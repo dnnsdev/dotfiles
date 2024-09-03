@@ -192,6 +192,9 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
+# Alias for su - root
+alias sur='su - root'
+
 # alias to cleanup unused docker containers, images, networks, and volumes
 
 alias docker-clean=' \

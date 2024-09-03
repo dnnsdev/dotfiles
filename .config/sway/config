@@ -199,7 +199,7 @@ bindsym $mod+t exec alacritty
 bindsym ctrl+$mod+d exec "$HOME/Software/JetBrains\ Rider-2024.2.2/bin/rider.sh"
 
 # open spotify (currently sucks so i'm using the browser instead)
-bindsym ctrl+$mod+s exec spotify --disable-gpu
+bindsym ctrl+$mod+s exec spotify
 
 # Kill focused window:
 bindsym $mod+Shift+q kill
