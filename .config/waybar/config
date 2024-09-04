@@ -14,20 +14,21 @@
     "spacing": 1,
     "margin-top": 1,
     "margin-bottom": -5,
-    "modules-center": ["sway/workspaces","sway/window"],
-    "modules-left": ["custom/hostname", "network", "memory", "temperature", "pulseaudio", "custom/media"],
-    "modules-right": ["tray","clock"],
+    "modules-center": ["sway/workspaces", "sway/window"],
+    "modules-left": ["custom/hostname", "network", "memory", "temperature", "pulseaudio"],
+    "modules-right": ["custom/media", "tray", "clock"],
 
     // Configuration for individual modules
+    
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
         "format": "{icon} {name}",
         "format-icons": {
-            "main": "",
-            "dev": "󰘦",
-            "media": "",
-            "infra": "󰱠",
+            "main": " ",
+            "dev": "󰘦 ",
+            "media": " ",
+            "infra": "󰱠 ",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -53,7 +54,12 @@
     },
 
     "sway/window": {
-        "format": "{}"
+        "format": "{}",
+        "justify": "center",
+        "rewrite": {
+            "(.*) - Visual Studio Code": "🧑‍💻 $1",
+    		"(.*) - Thorium": "🌎 $1"
+	    }
     },
 
     "tray": {

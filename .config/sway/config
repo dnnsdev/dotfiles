@@ -207,6 +207,9 @@ bindsym $mod+Shift+q kill
 # application launcher
 bindsym $mod+space exec $menu
 
+# emoji thing (https://github.com/Zeioth/wofi-emoji), needs wl-clipboard and wtype
+bindsym $mod+p exec "$HOME/.config/wofi/scripts/emoji.sh"
+
 #======#
 # Misc #
 #======#
