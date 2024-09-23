@@ -97,10 +97,6 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # To temporarily bypass an alias, we precede the command with a \
 # EG: the ls command is aliased, but to use the normal ls command you would type \ls
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Edit this .bashrc file in VS Code
 alias editbashrc='code ~/.bashrc'
 
@@ -182,7 +178,6 @@ alias folders='du -h --max-depth=1'
 alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias tree='tree -CAhF --dirsfirst'
 alias treed='tree -CAFd'
-alias mountedinfo='df -hT'
 
 # Alias's for archives
 alias mktar='tar -cvf'
@@ -443,11 +438,13 @@ trim() {
 	echo -n "$var"
 }
 
-# GitHub Titus Additions
+# git additions because i'm lazy
+# inspired by 'GitHub Titus Additions'
 gcom() {
 	git add .
 	git commit -m "$1"
 }
+
 lazyg() {
 	git add .
 	git commit -m "$1"
