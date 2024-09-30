@@ -44,6 +44,7 @@ apt install
     docker-buildx-plugin
     docker-ce-cli
     docker-ce
+    docker-compose
     docker-compose-plugin
     dotnet-sdk-8.0
     dpkg
@@ -234,6 +235,7 @@ apt install
     pciutils
     perl-base
     perl
+    pqiv
     playerctl
     polkit-kde-agent-1
     procps

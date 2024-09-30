@@ -63,7 +63,6 @@ if [[ $iatest -gt 0 ]]; then bind "set show-all-if-ambiguous On"; fi
 
 # Set the default editor
 export EDITOR=nano
-export VISUAL=nvim
 alias pico='edit'
 alias spico='sedit'
 
@@ -107,7 +106,6 @@ alias rm='trash -v'
 alias mkdir='mkdir -p'
 alias ps='ps auxf'
 alias ping='ping -c 10'
-alias cls='clear'
 alias multitail='multitail --no-repeat -c'
 alias freshclam='sudo freshclam'
 alias scrot='grim' # uses grim to take screenshot on wayland

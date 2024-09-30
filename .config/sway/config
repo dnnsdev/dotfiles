@@ -26,15 +26,15 @@ client.unfocused        $title_outline_unfocused $title_bg_unfocused $text_color
 client.urgent           $color_urgent            $color_urgent       $color_urgent $color_urgent         $color_urgent
 
 # Add gaps in between all application windows:
-gaps inner 5
+gaps inner 4
 gaps outer 2
 
 # Configure the default border:
 default_border pixel 1
 
-# Set the Wallpaper:
-output * bg $HOME/.config/sway/wallpaper.jpg fill
-## TODO: Fix this so that wallpaper is random based on some files from folder
+# Set path for wallpapers:
+set $wallpapers_path $HOME/Pictures/backgrounds
+output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 
 #====================================#
 # Activate the panel                 #

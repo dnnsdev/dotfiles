@@ -40,6 +40,7 @@ doc-debian
 docker-buildx-plugin
 docker-ce-cli
 docker-ce
+docker-compose
 docker-compose-plugin
 dotnet-sdk-8.0
 dpkg
@@ -233,6 +234,7 @@ perl
 playerctl
 polkit-kde-agent-1
 procps
+pqiv
 python3-gi
 python3-pip
 python3-reportbug
