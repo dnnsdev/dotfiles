@@ -149,7 +149,7 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 #=============================#
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.V
+# respectively.
 bindsym $mod+b splith
 bindsym $mod+v splitv
 
