@@ -210,10 +210,10 @@ bindsym $mod+space exec $menu
 # emoji thing (https://github.com/Zeioth/wofi-emoji), needs wl-clipboard and wtype
 bindsym $mod+p exec "$HOME/.config/wofi/scripts/emoji.sh"
 
+include /etc/sway/config-vars.d/*
+include /etc/sway/config.d/*
+
 #======#
 # Misc #
 #======#
 exec "$HOME/.config/sway/conf.d/startup.sh"
-
-include /etc/sway/config-vars.d/*
-include /etc/sway/config.d/*

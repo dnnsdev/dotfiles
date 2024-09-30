@@ -1,4 +1,9 @@
 #!/bin/bash
 
 # Startup file
-# swaymsg "exec owncloud"
+apps=( owncloud vesktop )
+
+for app in "${apps[@]}"
+do
+    swaymsg "exec --no-startup-id $app"
+done
