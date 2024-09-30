@@ -10,6 +10,10 @@ if [[ ! $(pgrep -x "swaynag") ]]; then
         --button-background=#FF9100 \
         --button-border-size=1px \
         --border=#FCC99D \
+        --layer=overlay \
+        --edge=bottom \
+        --message-padding=10 \
+        --button-padding=10 \
         #--text=#092E47 \
         --background=#28282
 fi

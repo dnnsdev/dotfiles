@@ -26,8 +26,8 @@ client.unfocused        $title_outline_unfocused $title_bg_unfocused $text_color
 client.urgent           $color_urgent            $color_urgent       $color_urgent $color_urgent         $color_urgent
 
 # Add gaps in between all application windows:
-gaps inner 4
-gaps outer 2
+gaps inner 2
+gaps outer 1
 
 # Configure the default border:
 default_border pixel 1
@@ -149,7 +149,7 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 #=============================#
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
+# respectively.V
 bindsym $mod+b splith
 bindsym $mod+v splitv
 
