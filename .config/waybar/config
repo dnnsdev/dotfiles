@@ -80,7 +80,7 @@
     },
 
     "temperature": {
-        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp2_input",
+        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input",
         "format": "{temperatureC}°C "
     },
 
