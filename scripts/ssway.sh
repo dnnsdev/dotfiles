@@ -128,7 +128,8 @@ apt install
     libgl1-mesa-dri
     libgl1-mesa-dri
     libgl1
-    libgl1
+    -- libgl1
+    libglib2.0-bin
     libgmp10
     libgnutls30
     libgpg-error0
