@@ -25,13 +25,6 @@ client.focused_inactive $title_outline_unfocused $background         $text_color
 client.unfocused        $title_outline_unfocused $title_bg_unfocused $text_color   $title_outline_active
 client.urgent           $color_urgent            $color_urgent       $color_urgent $color_urgent         $color_urgent
 
-# Add gaps in between all application windows:
-gaps inner 2
-gaps outer 1
-
-# Configure the default border:
-default_border pixel 1
-
 # Set path for wallpapers:
 set $wallpapers_path $HOME/Pictures/backgrounds
 output * bg `find $wallpapers_path -type f | shuf -n 1` fill
@@ -198,8 +191,11 @@ bindsym $mod+t exec alacritty
 # open jetbrains rider
 bindsym ctrl+$mod+d exec "$HOME/Software/JetBrains\ Rider-2024.2.2/bin/rider.sh"
 
-# open spotify (currently sucks so i'm using the browser instead)
+# open spotify
 bindsym ctrl+$mod+s exec spotify
+
+# btop (may be used as task manager)
+bindsym ctrl+shift+escape exec alacritty btop
 
 # Kill focused window:
 bindsym $mod+Shift+q kill
@@ -216,4 +212,6 @@ include /etc/sway/config.d/*
 #======#
 # Misc #
 #======#
+include "$HOME/.config/sway/conf.d/*.conf"
+
 exec "$HOME/.config/sway/conf.d/startup.sh"
