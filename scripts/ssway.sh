@@ -201,6 +201,7 @@ apt install
     linux-headers-liquorix-amd64
     linux-image-amd64
     linux-image-liquorix-amd64
+    lsd
     lm-sensors
     locales
     login

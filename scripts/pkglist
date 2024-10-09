@@ -198,6 +198,7 @@ linux-headers-liquorix-amd64
 linux-image-amd64
 linux-image-liquorix-amd64
 lm-sensors
+lsd
 locales
 login
 logrotate
