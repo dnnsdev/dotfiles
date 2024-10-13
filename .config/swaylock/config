@@ -1,0 +1,36 @@
+# settings
+ignore-empty-password
+
+# theming
+line-uses-inside
+line-uses-ring
+
+# bg
+image=~/.config/swaylock/ls.jpg
+scaling=center
+color=161821a0
+
+# unlocking indicator
+ring-color=b4be82
+separator-color=b4be82
+
+key-hl-color=84a0c6
+bs-hl-color=e27878
+
+inside-color=00000000
+indicator-thickness=16
+
+# cleared indicator
+ring-clear-color=e2a478
+text-clear-color=00000000
+inside-clear-color=00000000
+
+# capslock indicator (doesn't work?)
+ring-caps-lock-color=e27878
+text-caps-lock-color=00000000
+inside-caps-lock-color=00000000
+
+# hide verification indicator
+inside-ver-color=00000000
+ring-ver-color=00000000
+text-ver-color=00000000
