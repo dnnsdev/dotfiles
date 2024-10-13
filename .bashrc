@@ -382,12 +382,6 @@ install_bashrc_support() {
 	dtype=$(distribution)
 
 	case $dtype in
-		"redhat")
-			sudo yum install multitail tree zoxide trash-cli fzf bash-completion fastfetch
-			;;
-		"suse")
-			sudo zypper install multitail tree zoxide trash-cli fzf bash-completion fastfetch
-			;;
 		"debian")
 			sudo apt-get install multitail tree zoxide trash-cli fzf bash-completion
 			# Fetch the latest fastfetch release URL for linux-amd64 deb file
@@ -398,12 +392,6 @@ install_bashrc_support() {
 
 			# Install the downloaded deb file using apt-get
 			sudo apt-get install /tmp/fastfetch_latest_amd64.deb
-			;;
-		"arch")
-			sudo paru multitail tree zoxide trash-cli fzf bash-completion fastfetch
-			;;
-		"slackware")
-			echo "No install support for Slackware"
 			;;
 		*)
 			echo "Unknown distribution"
