@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Check if Script is run as Root
+# Check if script is run as root
 if [[ $EUID -ne 0 ]]; then
-  echo "You must be a root user to run this script, please run sudo ./install.sh" 2>&1
+  echo "You must be a root user to run this script" 2>&1
   exit 1
 fi
 
@@ -97,3 +97,7 @@ nala install ./thorium-browser.deb -y
 # > thorium
 
 apt-get install $(grep -o '^[^#]*' pkglist)
+
+# as a baseinstall i use debian 12 w/ kde
+# so.. here should follow stuff to cleanup (obsolete) packages from kde
+# todo: remove packages i don't need
