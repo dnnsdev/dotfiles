@@ -1,9 +1,24 @@
-# im just lazy
-# prefer to run this as root
+#!/bin/bash
+
+# Check if Script is run as Root
+if [[ $EUID -ne 0 ]]; then
+  echo "You must be a root user to run this script, please run sudo ./install.sh" 2>&1
+  exit 1
+fi
+
+# first user
+username=$(id -u -n 1000)
+
+# build directory
+builddir=$(pwd)
+
+mkdir -p /home/$username/Pictures
+mkdir -p /home/$username/Pictures/backgrounds
+# chown -R $username:$username /home/$username
 
 # prerequisites for stuff below
 apt-get update
-apt-get install wget gpg apt-transport-https
+apt-get install wget gpg apt-transport-https nala
 
 # install repos
 
@@ -49,5 +64,36 @@ apt install ./jmp.deb
 rm jmp.deb
 
 # > owncloud client
+
+# > starship
+
+curl -sS https://starship.rs/install.sh | sh
+
+# < starship
+
+# < fonts
+
+nala install fonts-font-awesome -y
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+unzip FiraCode.zip -d /home/$username/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+unzip Meslo.zip -d /home/$username/.fonts
+mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
+
+chown -R $username:$username /home/$username
+
+# Reloading Font
+fc-cache -vf
+# Removing zip Files
+rm *.zip
+
+# > fonts
+
+# < thorium
+wget -O ./thorium-browser.deb "$(curl -s https://api.github.com/repos/Alex313031/Thorium/releases/latest | grep browser_download_url | grep .deb | cut -d '"' -f 4)"
+
+nala install ./thorium-browser.deb -y
+
+# > thorium
 
 apt-get install $(grep -o '^[^#]*' pkglist)
