@@ -68,6 +68,12 @@ bindsym $mod+Escape exec $lock_screen
 bindsym --locked XF86MonBrightnessUp exec brightnessctl s +5%
 bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%-
 
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled
+}
+
 #========================================#
 # Keyboard Shortcuts (Window Management) #
 #========================================#
