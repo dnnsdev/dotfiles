@@ -43,7 +43,7 @@ doc-debian
 #docker-ce
 #docker-compose
 #docker-compose-plugin
-#dotnet-sdk-8.0
+dotnet-sdk-8.0
 dpkg
 e2fsprogs
 #fastfetch (enable on debian 13)

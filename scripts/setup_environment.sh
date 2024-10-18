@@ -96,6 +96,14 @@ nala install ./thorium-browser.deb -y
 
 # > thorium
 
+# < dotnet sdk
+
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
+# > dotnet sdk
+
 apt-get install $(grep -o '^[^#]*' pkglist)
 
 # as a baseinstall i use debian 12 w/ kde
