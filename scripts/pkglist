@@ -18,7 +18,7 @@ bzip2
 ca-certificates
 code
 console-setup
-containerd.io
+#containerd.io
 coreutils
 cpio
 cron-daemon-common
@@ -37,15 +37,15 @@ discover
 dmidecode
 dmsetup
 doc-debian
-docker-buildx-plugin
-docker-ce-cli
-docker-ce
-docker-compose
-docker-compose-plugin
-dotnet-sdk-8.0
+#docker-buildx-plugin
+#docker-ce-cli
+#docker-ce
+#docker-compose
+#docker-compose-plugin
+#dotnet-sdk-8.0
 dpkg
 e2fsprogs
-fastfetch
+#fastfetch (enable on debian 13)
 fdisk
 file
 findutils
@@ -79,7 +79,7 @@ iproute2
 iputils-ping
 isc-dhcp-client
 isc-dhcp-common
-jellyfin-media-player
+#jellyfin-media-player
 kcalc
 keepassxc
 keyboard-configuration
@@ -194,9 +194,9 @@ libxtables12
 libxxhash0
 libzstd1
 light
-linux-headers-liquorix-amd64
-linux-image-amd64
-linux-image-liquorix-amd64
+#linux-headers-liquorix-amd64
+#linux-image-amd64
+#linux-image-liquorix-amd64
 lm-sensors
 lsd
 locales
@@ -227,7 +227,7 @@ openssh-client
 orca
 os-prober
 owncloud-client
-packages-microsoft-prod
+#packages-microsoft-prod
 passwd
 pavucontrol
 pciutils
@@ -254,9 +254,9 @@ shim-signed
 slurp
 spotify-client
 sshfs
-steam-launcher
-steam-libs-amd64
-steam-libs-i386
+#steam-launcher
+#steam-libs-amd64
+#steam-libs-i386
 sudo
 sway
 swaybg
@@ -272,7 +272,7 @@ task-desktop
 task-english
 tasksel-data
 tasksel
-thorium-browser
+#thorium-browser
 thunar
 tlp-rdw
 tlp
@@ -287,7 +287,7 @@ usbutils
 usr-is-merged
 util-linux-extra
 util-linux
-vesktop
+#vesktop
 vim-common
 vim-tiny
 virt-manager
