@@ -64,6 +64,10 @@ exec swayidle -w \
 set $lock_screen exec bash ~/.config/sway/lock_screen.sh
 bindsym $mod+Escape exec $lock_screen
 
+# Screen brightness
+bindsym --locked XF86MonBrightnessUp exec brightnessctl s +5%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%-
+
 #========================================#
 # Keyboard Shortcuts (Window Management) #
 #========================================#

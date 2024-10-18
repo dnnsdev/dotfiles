@@ -11,6 +11,7 @@ bash
 bat
 bind9-dnsutils
 bind9-host
+brightnessctl
 bsdutils
 btop
 busybox
