@@ -55,8 +55,8 @@
         "format": "{}",
         "justify": "center",
         "rewrite": {
-            "(.*) - Visual Studio Code": "🧑‍💻 $1",
-    		"(.*) - Thorium": "🌎 $1"
+            "(.*) - Visual Studio Code": " $1",
+    		"(.*) - Thorium": " $1"
 	    }
     },
 
@@ -83,7 +83,7 @@
     },
 
     "network": {
-        "format-wifi": " {signalStrength}%",
+        "format-wifi": "  {signalStrength}%",
         "format-ethernet": "Connected  ",
         "tooltip-format": "{ifname}: {gwaddr}",
         "format-linked": "{ifname} (No IP)",
@@ -97,8 +97,8 @@
                 "critical": 15
         	},
         	"format": "{icon} {capacity}%",
-        	"format-charging": "  {capacity}%",
-        	"format-plugged": "  {capacity}%",
+        	"format-charging": " {capacity}%",
+        	"format-plugged": " {capacity}%",
         	"format-alt": "{time} {icon}",
         	"format-full": " {capacity}%",
         	"format-icons": ["", "", ""]
