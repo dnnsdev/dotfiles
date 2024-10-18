@@ -1,7 +1,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "MesloLGS Nerd Font";
+    font-family: "Droid Sans Mono", "MesloLGS NF";
+    font-weight: 300;
     font-size: 14px;
     min-height: 0;
 }
@@ -55,10 +56,6 @@ window#waybar {
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #custom-hostname {
     padding: 0 3px;
     margin: 0 2px;
-}
-
-#clock {
-    font-weight: bold;
 }
 
 #network.disconnected {

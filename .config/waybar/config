@@ -15,11 +15,9 @@
     "margin-top": 1,
     "margin-bottom": -5,
     "modules-center": ["sway/workspaces", "sway/window"],
-    "modules-left": ["custom/hostname", "network", "memory", "temperature", "pulseaudio"],
+    "modules-left": ["custom/hostname", "network", "battery", "memory", "temperature", "pulseaudio"],
     "modules-right": ["custom/media", "tray", "clock"],
-
     // Configuration for individual modules
-    
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
@@ -92,6 +90,19 @@
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
+
+    "battery": {
+        	"states": {
+                "warning": 30,
+                "critical": 15
+        	},
+        	"format": "{icon} {capacity}%",
+        	"format-charging": "  {capacity}%",
+        	"format-plugged": "  {capacity}%",
+        	"format-alt": "{time} {icon}",
+        	"format-full": " {capacity}%",
+        	"format-icons": ["", "", ""]
+	},
 
     "custom/media": {
         "exec": "$HOME/.config/waybar/scripts/playerctl.sh",
