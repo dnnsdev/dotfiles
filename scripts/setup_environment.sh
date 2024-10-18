@@ -74,16 +74,23 @@ curl -sS https://starship.rs/install.sh | sh
 # < fonts
 
 nala install fonts-font-awesome -y
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-unzip FiraCode.zip -d /home/$username/.fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-unzip Meslo.zip -d /home/$username/.fonts
-mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
 
+# firacode
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+
+unzip FiraCode.zip -d /home/$username/.fonts
+
+# meslo
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+
+unzip Meslo.zip -d /home/$username/.fonts
+
+# chown whole directory for first user
 chown -R $username:$username /home/$username
 
-# Reloading Font
+# Reloading font cache
 fc-cache -vf
+
 # Removing zip Files
 rm *.zip
 
@@ -99,10 +106,22 @@ nala install ./thorium-browser.deb -y
 # < dotnet sdk
 
 wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+
 dpkg -i packages-microsoft-prod.deb
+
 rm packages-microsoft-prod.deb
 
 # > dotnet sdk
+
+# < vesktop
+
+wget https://vencord.dev/download/vesktop/amd64/deb -O vesktop.deb
+
+dpkg -i vesktop.deb
+
+rm vesktop.deb
+
+# > vesktop
 
 apt-get install $(grep -o '^[^#]*' pkglist)
 
