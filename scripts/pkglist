@@ -195,9 +195,6 @@ libxtables12
 libxxhash0
 libzstd1
 light
-#linux-headers-liquorix-amd64
-#linux-image-amd64
-#linux-image-liquorix-amd64
 lm-sensors
 lsd
 locales

@@ -50,9 +50,9 @@ echo "deb http://repository.spotify.com stable non-free" | tee /etc/apt/sources.
 
 wget -nv https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/Debian_12/Release.key -O - | gpg --dearmor | tee /etc/apt/trusted.gpg.d/owncloud-client.gpg > /dev/null
 
-# > owncloud-client
+echo 'deb https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/Debian_12/ /' | tee -a /etc/apt/sources.list.d/owncloud-client.list
 
-# < owncloud-client
+# > owncloud-client
 
 # source: https://github.com/jellyfin/jellyfin-media-player/wiki/Installing-on-Linux
 
