@@ -128,4 +128,4 @@ apt-get install $(grep -o '^[^#]*' pkglist)
 # as a baseinstall i use debian 12 w/ kde
 # so.. here should follow stuff to cleanup (obsolete) packages from kde
 # todo: remove packages (such as (neo)vim) i don't need
-apt-get install $(grep -o '^[^#]*' shitlist)
+apt-get remove $(grep -o '^[^#]*' shitlist)
