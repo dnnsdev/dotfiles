@@ -108,6 +108,7 @@ alias scrot='grim' # uses grim to take screenshot on wayland
 alias sscrot='slurp | grim -g - $outputFile' #slurp makes sure that an area can be selected and then piped into grim
 
 # Change directory aliases
+# alias cd='z'
 alias home='cd ~'
 alias cd..='cd ..'
 alias ..='cd ..'
@@ -447,10 +448,10 @@ if [[ $- == *i* ]]; then
     bind '"\C-f":"zi\n"'
 fi
 
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+
 export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:/.local/share/flatpak/exports/bin"
 
 # Export display for playerctl
 export DISPLAY=:0.0
-
-eval "$(starship init bash)"
-eval "$(zoxide init bash)"

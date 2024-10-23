@@ -134,18 +134,21 @@ set $ws1 "main"
 set $ws2 "dev"
 set $ws3 "media"
 set $ws4 "infra"
+set $ws5 "win"
 
 # Move between workspaces
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5 
 
 #=============================#
 # Keyboard Shortcuts (Layout) #
@@ -199,7 +202,7 @@ bindsym ctrl+$mod+f exec thunar
 bindsym $mod+t exec alacritty
 
 # open jetbrains rider
-bindsym ctrl+$mod+d exec "$HOME/Software/JetBrains\ Rider-2024.2.2/bin/rider.sh"
+bindsym ctrl+$mod+d exec "$HOME/software/jetbrains-rider/bin/rider.sh"
 
 # open spotify
 bindsym ctrl+$mod+s exec spotify
