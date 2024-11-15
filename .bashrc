@@ -364,14 +364,7 @@ distribution () {
     echo $dtype
 }
 
-#alias cat = 'batcat'
-
-DISTRIBUTION=$(distribution)
-if [ "$DISTRIBUTION" = "redhat" ] || [ "$DISTRIBUTION" = "arch" ]; then
-      alias cat='bat'
-else
-      alias cat='batcat'
-fi 
+alias cat='batcat'
 
 # Automatically install the needed support files for this .bashrc file
 install_bashrc_support() {
@@ -423,17 +416,6 @@ trim() {
 
 # git additions because i'm lazy
 # inspired by 'GitHub Titus Additions'
-gcom() {
-	git add .
-	git commit -m "$1"
-}
-
-lazyg() {
-	git add .
-	git commit -m "$1"
-	git push
-}
-
 gitc() {
 	git commit -m "$1" -a
 }
