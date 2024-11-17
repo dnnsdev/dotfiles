@@ -101,6 +101,8 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
 # Hold the modifier key and hold the left/right mouse button
 # to drag or resize a window respectively. This isn't exclusive
 # to floating windows:

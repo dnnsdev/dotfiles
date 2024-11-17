@@ -189,6 +189,7 @@ libtinfo6
 libtirpc-common
 libtirpc3
 libudev1
+#libnotify-bin
 libunistring2
 libuuid1
 libvirt-daemon-system
@@ -204,6 +205,7 @@ logrotate
 logsave
 lsb-release
 lsof
+#mako-notifier
 man-db
 manpages
 mawk
@@ -262,6 +264,7 @@ swaybg
 swayidle
 swayimg
 swaylock
+sway-notification-center
 systemd-sysv
 systemd-timesyncd
 systemd
@@ -273,6 +276,7 @@ tasksel-data
 tasksel
 #thorium-browser
 thunar
+thunderbird
 tlp-rdw
 tlp
 traceroute

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Startup file
-apps=( owncloud vesktop )
+apps=( owncloud vesktop swaync )
 
 for app in "${apps[@]}"
 do

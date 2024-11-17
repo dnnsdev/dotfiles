@@ -35,8 +35,6 @@ rm -f packages.microsoft.gpg
 wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.27.1/fastfetch-linux-amd64.deb
 dpkg -i fastfetch-linux-amd64.deb
 
-rm fastfetch-linux-amd64.deb
-
 # > fastfetch
 
 # < spotify
@@ -60,8 +58,6 @@ version=$(curl --head https://github.com/jellyfin/jellyfin-media-player/releases
 wget "https://github.com/jellyfin/jellyfin-media-player/releases/download/v$version/jellyfin-media-player_$version-1_amd64-$(grep VERSION_CODENAME /etc/os-release | cut -d= -f2).deb" -O jmp.deb
 
 apt install ./jmp.deb
-
-rm jmp.deb
 
 # > owncloud client
 
@@ -109,8 +105,6 @@ wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
 
 dpkg -i packages-microsoft-prod.deb
 
-rm packages-microsoft-prod.deb
-
 # > dotnet sdk
 
 # < vesktop
@@ -118,8 +112,6 @@ rm packages-microsoft-prod.deb
 wget https://vencord.dev/download/vesktop/amd64/deb -O vesktop.deb
 
 dpkg -i vesktop.deb
-
-rm vesktop.deb
 
 # > vesktop
 
@@ -140,3 +132,6 @@ apt-get install $(grep -o '^[^#]*' pkglist)
 # so.. here should follow stuff to cleanup (obsolete) packages from kde
 # todo: remove packages (such as (neo)vim) i don't need
 apt-get remove $(grep -o '^[^#]*' shitlist)
+
+# remove all downloaded debs
+rm *.deb
