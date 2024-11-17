@@ -123,6 +123,17 @@ rm vesktop.deb
 
 # > vesktop
 
+# < VSCodium
+
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+
+echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+    | tee /etc/apt/sources.list.d/vscodium.list
+
+# > VSCodium
+
 apt-get install $(grep -o '^[^#]*' pkglist)
 
 # as a baseinstall i use debian 12 w/ kde

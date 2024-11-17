@@ -17,7 +17,8 @@ btop
 busybox
 bzip2
 ca-certificates
-code
+#code
+codium
 console-setup
 #containerd.io
 coreutils
