@@ -126,6 +126,8 @@ echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https:/
 
 # > VSCodium
 
+apt update
+
 apt-get install $(grep -o '^[^#]*' pkglist)
 
 # as a baseinstall i use debian 12 w/ kde
