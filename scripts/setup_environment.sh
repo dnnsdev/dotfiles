@@ -137,3 +137,7 @@ apt-get remove $(grep -o '^[^#]*' shitlist)
 
 # remove all downloaded debs
 rm *.deb
+
+# clean up apt
+apt autoremove
+apt autoclean
