@@ -17,7 +17,6 @@ btop
 busybox
 bzip2
 ca-certificates
-#code
 codium
 console-setup
 #containerd.io
@@ -81,7 +80,6 @@ iproute2
 iputils-ping
 isc-dhcp-client
 isc-dhcp-common
-#jellyfin-media-player
 kcalc
 keepassxc
 keyboard-configuration
@@ -238,6 +236,7 @@ playerctl
 polkit-kde-agent-1
 procps
 pqiv
+pulsemixer
 python3-gi
 python3-pip
 python3-reportbug
@@ -255,9 +254,6 @@ shim-signed
 slurp
 spotify-client
 sshfs
-#steam-launcher
-#steam-libs-amd64
-#steam-libs-i386
 sudo
 sway
 swaybg
@@ -274,7 +270,6 @@ task-desktop
 task-english
 tasksel-data
 tasksel
-#thorium-browser
 thunar
 thunderbird
 tlp-rdw
@@ -290,7 +285,6 @@ usbutils
 usr-is-merged
 util-linux-extra
 util-linux
-#vesktop
 vim-common
 vim-tiny
 virt-manager
