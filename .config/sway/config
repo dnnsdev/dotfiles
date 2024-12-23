@@ -228,12 +228,10 @@ bindsym $mod+space exec $menu
 # emoji thing (https://github.com/Zeioth/wofi-emoji), needs wl-clipboard and wtype
 bindsym $mod+p exec "$HOME/.config/wofi/scripts/emoji.sh"
 
+# Hide cursor after 5 seconds of inactivty
+seat seat0 hide_cursor 5000
+
 include /etc/sway/config-vars.d/*
 include /etc/sway/config.d/*
-
-#======#
-# Misc #
-#======#
 include "$HOME/.config/sway/conf.d/*.conf"
-
 exec "$HOME/.config/sway/conf.d/startup.sh"
