@@ -91,24 +91,29 @@ curl -sS https://starship.rs/install.sh | sh
 
 nala install fonts-font-awesome -y
 
-# firacode
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
+# skip installation of fonts when the directory already contains files
+if ![ "$(ls -A /home/$username/.fonts)" ]; then
 
-unzip FiraCode.zip -d /home/$username/.fonts
+  # firacode
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
 
-# meslo
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
+  unzip FiraCode.zip -d /home/$username/.fonts
 
-unzip Meslo.zip -d /home/$username/.fonts
+  # meslo
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
 
-# chown whole directory for first user
-chown -R $username:$username /home/$username
+  unzip Meslo.zip -d /home/$username/.fonts
 
-# Reloading font cache
-fc-cache -vf
+  # chown whole directory for first user
+  chown -R $username:$username /home/$username
 
-# Removing zip Files
-rm *.zip
+  # Reloading font cache
+  fc-cache -vf
+
+  # Removing zip Files
+  rm *.zip
+
+fi
 
 # > fonts
 
