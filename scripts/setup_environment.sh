@@ -95,12 +95,12 @@ nala install fonts-font-awesome -y
 if ![ "$(ls -A /home/$username/.fonts)" ]; then
 
   # firacode
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip
 
   unzip FiraCode.zip -d /home/$username/.fonts
 
   # meslo
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Meslo.zip
 
   unzip Meslo.zip -d /home/$username/.fonts
 
