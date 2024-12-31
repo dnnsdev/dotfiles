@@ -5,13 +5,13 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 28,
+    "height": 30,
     "spacing": 1,
-    "margin-top": 1,
-    "margin-bottom": -5,
+    "margin-top": 0,
+    "margin-bottom": 0,
     "modules-center": ["sway/workspaces", "sway/window"],
-    "modules-left": ["custom/hostname", "network", "battery", "memory", "temperature", "pulseaudio"],
-    "modules-right": ["custom/media", "tray", "clock"],
+    "modules-left": ["custom/hostname", "network", "battery", "memory", "temperature"],
+    "modules-right": ["custom/media", "pulseaudio", "tray", "clock"],
     // Configuration for individual modules
     "sway/workspaces": {
         "all-outputs": false,
@@ -84,7 +84,7 @@
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "exec alacritty -e nmtui-connect"
+        "on-click-right": "exec foot nmtui-connect"
     },
 
     "battery": {
