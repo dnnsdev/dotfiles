@@ -1,12 +1,7 @@
-//====================================================================================================//
-// Waybar Configuration File                                                                          //
-//----------------------------------------------------------------------------------------------------//
-// Purpose: Creates a minimalistic (yet functional) waybar at                                         //
-// the top of the screen.                                                                             //
-// themes and colors, set the wallpaper, and more.                                                    //
-//                                                                                                    //
-// License: Creative Commons Attribution 4.0 International                                            //
-//====================================================================================================//
+//============================================================//
+// Waybar Configuration File                                  //
+// License: Creative Commons Attribution 4.0 International    //
+//============================================================//
 {
     "layer": "top",
     "position": "top",
@@ -55,7 +50,7 @@
         "format": "{}",
         "justify": "center",
         "rewrite": {
-            "(.*) - Visual Studio Code": " $1",
+            "(.*) - VSCodium": " $1",
     		"(.*) - Thorium": " $1"
 	    }
     },
