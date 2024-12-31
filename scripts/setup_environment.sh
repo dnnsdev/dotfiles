@@ -163,6 +163,9 @@ apt-get remove $(grep -o '^[^#]*' shitlist)
 # remove all downloaded debs
 rm *.deb
 
+# Effort to remove KDE leftovers
+apt autoremove --purge kde*
+
 # clean up apt
 apt autoremove
 apt autoclean

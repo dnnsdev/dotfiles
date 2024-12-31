@@ -181,7 +181,6 @@ libtinfo6
 libtirpc-common
 libtirpc3
 libudev1
-#libnotify-bin
 libunistring2
 libuuid1
 libvirt-daemon-system
