@@ -3,7 +3,9 @@
 # Reload cfg: Super + Shift + C.                                     #
 #====================================================================#
 
-# Declare Colors:
+# Declare colors and themes
+set $gtk-theme Dracula
+set $gtk-color-scheme prefer-dark
 set $background #332b2b
 set $color_urgent #fb4934
 set $text_color #ffffff
