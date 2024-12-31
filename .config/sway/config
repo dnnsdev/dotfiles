@@ -208,7 +208,7 @@ bindsym $mod+shift+b exec thorium-browser
 bindsym ctrl+$mod+f exec thunar
 
 # open terminal
-bindsym $mod+t exec alacritty
+bindsym $mod+t exec foot
 
 # open jetbrains rider
 bindsym ctrl+$mod+d exec "$HOME/software/jetbrains-rider/bin/rider.sh"
@@ -217,7 +217,7 @@ bindsym ctrl+$mod+d exec "$HOME/software/jetbrains-rider/bin/rider.sh"
 bindsym ctrl+$mod+s exec spotify
 
 # btop (may be used as task manager)
-bindsym ctrl+shift+escape exec alacritty btop
+bindsym ctrl+shift+escape exec foot btop
 
 # Kill focused window:
 bindsym $mod+Shift+q kill
