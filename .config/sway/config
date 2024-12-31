@@ -1,15 +1,8 @@
-#==================================================================================#
-# Sway Window Manager Configuration File                                           #
-#----------------------------------------------------------------------------------#
-# License: Creative Commons Attribution 4.0 International                          #
-#                                                                                  #
-# No copyright- feel free to modify to your needs                                  #
-# Reload cfg: Super + Shift + C.                                                   #
-#==================================================================================#
+#====================================================================#
+# Feel free to modify to your needs                                  #
+# Reload cfg: Super + Shift + C.                                     #
+#====================================================================#
 
-#========================#
-# Appearance and Theming #
-#========================#
 # Declare Colors:
 set $background #332b2b
 set $color_urgent #fb4934

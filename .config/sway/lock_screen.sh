@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Credit to the following for comming up with this:
+# Credit to the following for coming up with this:
 # https://code.krister.ee/lock-screen-in-sway/
 # To Do: The fancier screen lock mentioned on that page might be cool to try.
 
