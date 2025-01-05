@@ -224,7 +224,6 @@ pciutils
 perl-base
 perl
 playerctl
-polkit-kde-agent-1
 procps
 pqiv
 pulsemixer
