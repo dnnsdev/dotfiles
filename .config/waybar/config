@@ -78,26 +78,27 @@
     },
 
     "network": {
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "Connected  ",
+        "format-wifi": "  {essid} <span foreground='#929292'>{signalStrength}%</span>",
+        "format-ethernet": "<span foreground='#929292'></span> wired",
         "tooltip-format": "{ifname}: {gwaddr}",
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "exec foot nmtui-connect"
+        "on-click-right": "exec foot nmtui-connect",
+        "tooltip": false
     },
 
     "battery": {
-        	"states": {
-                "warning": 30,
-                "critical": 15
-        	},
-        	"format": "{icon} {capacity}%",
-        	"format-charging": "󰂄 {capacity}%",
-        	"format-plugged": " {capacity}%",
-        	"format-alt": "{time} {icon}",
-        	"format-full": " {capacity}%",
-        	"format-icons": ["", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "format": "<span foreground='#929292'>{icon}</span> {capacity}%",
+        "format-charging": "<span foreground='#929292'>{icon}</span> {capacity}%",
+        "format-discharging": "<span foreground='#929292'>{icon}</span> {time}",
+        "format-full": "<span foreground='#929292'>{icon}</span> {capacity}%",
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        }
 	},
 
     "custom/media": {

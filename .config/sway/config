@@ -194,7 +194,7 @@ bindsym $mod+minus scratchpad show
 # Keyboard Shortcuts to launch most used apps #
 #=============================================#
 # Set up wofi to replace dmenu as the launcher of choice:
-set $menu wofi --show drun  -i | xargs swaymsg exec --
+set $menu wofi --show drun -i | xargs swaymsg exec --
 
 # launch browser
 bindsym $mod+shift+b exec thorium-browser
