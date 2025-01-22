@@ -18,6 +18,7 @@ mkdir -p /home/$username/Pictures/backgrounds
 
 # prerequisites for stuff below
 apt-get update
+apt-get upgrade
 apt-get install ca-certificates curl wget gpg apt-transport-https nala 
 
 # install repos
@@ -37,7 +38,6 @@ then
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-  apt-get update
   apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
   groupadd docker
@@ -204,8 +204,6 @@ then
 fi
 
 # > VSCodium
-
-apt update
 
 apt-get install $(grep -o '^[^#]*' pkglist)
 
