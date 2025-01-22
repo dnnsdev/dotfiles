@@ -38,7 +38,7 @@ then
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-  apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  nala install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
   groupadd docker
   usermod -aG docker $username
@@ -104,7 +104,7 @@ then
   version=$(curl --head https://github.com/jellyfin/jellyfin-media-player/releases/latest | tr -d '\r' | grep '^location' | sed 's/.*\/v//g')
   wget "https://github.com/jellyfin/jellyfin-media-player/releases/download/v$version/jellyfin-media-player_$version-1_amd64-$(grep VERSION_CODENAME /etc/os-release | cut -d= -f2).deb" -O jmp.deb
 
-  apt install ./jmp.deb
+  nala install ./jmp.deb
 
 fi
 
