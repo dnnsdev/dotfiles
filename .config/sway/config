@@ -20,10 +20,6 @@ client.focused_inactive $title_outline_unfocused $background         $text_color
 client.unfocused        $title_outline_unfocused $title_bg_unfocused $text_color   $title_outline_active
 client.urgent           $color_urgent            $color_urgent       $color_urgent $color_urgent         $color_urgent
 
-# Set path for wallpapers:
-set $wallpapers_path $HOME/Pictures/backgrounds
-output * bg `find $wallpapers_path -type f | shuf -n 1` fill
-
 #====================================#
 # Activate the panel                 #
 #====================================#
