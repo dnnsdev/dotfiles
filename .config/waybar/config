@@ -78,7 +78,7 @@
     },
 
     "network": {
-        "format-wifi": "  {essid} <span foreground='#929292'>{signalStrength}%</span>",
+        "format-wifi": "   {essid} <span foreground='#929292'>{signalStrength}%</span>",
         "format-ethernet": "<span foreground='#929292'></span> wired",
         "tooltip-format": "{ifname}: {gwaddr}",
         "format-linked": "{ifname} (No IP)",
