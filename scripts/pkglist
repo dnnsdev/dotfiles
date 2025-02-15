@@ -212,6 +212,7 @@ ncurses-term
 neovim
 netbase
 netcat-traditional
+net-tools
 network-manager
 nftables
 openssh-client
