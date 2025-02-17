@@ -99,7 +99,7 @@ fi
 
 # source: https://github.com/jellyfin/jellyfin-media-player/wiki/Installing-on-Linux
 
-if [ $(which docker) == "" ];
+if [ $(which jellyfinmediaplayer) == "" ];
 then
 
   version=$(curl --head https://github.com/jellyfin/jellyfin-media-player/releases/latest | tr -d '\r' | grep '^location' | sed 's/.*\/v//g')
