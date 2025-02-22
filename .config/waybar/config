@@ -5,10 +5,10 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 30,
+    "height": 28,
     "spacing": 1,
-    "margin-top": 0,
-    "margin-bottom": 0,
+    "margin-top": 2,
+    "margin-bottom": 2,
     "modules-center": ["sway/workspaces", "sway/window"],
     "modules-left": ["custom/hostname", "network", "battery", "memory", "temperature"],
     "modules-right": ["custom/media", "pulseaudio", "tray", "clock"],
@@ -62,7 +62,7 @@
 
     "clock": {
         "timezone": "Europe/Amsterdam",
-        "format": " {:%a %d %b  %H:%M}",
+        "format": "  {:%a %d %b   %H:%M}",
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
     },
 
@@ -78,8 +78,8 @@
     },
 
     "network": {
-        "format-wifi": "   {essid} <span foreground='#929292'>{signalStrength}%</span>",
-        "format-ethernet": "<span foreground='#929292'></span> wired",
+        "format-wifi": "󱚽 {essid} <span foreground='#929292'>{signalStrength}%</span>",
+        "format-ethernet": "<span foreground='#929292'>󰈀</span>  wired",
         "tooltip-format": "{ifname}: {gwaddr}",
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
