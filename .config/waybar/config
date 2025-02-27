@@ -90,10 +90,10 @@
 
     "battery": {
         "format-icons": ["", "", "", "", ""],
-        "format": "<span foreground='#929292'>{icon}</span> {capacity}%",
-        "format-charging": "<span foreground='#929292'>{icon}</span> {capacity}%",
-        "format-discharging": "<span foreground='#929292'>{icon}</span> {time}",
-        "format-full": "<span foreground='#929292'>{icon}</span> {capacity}%",
+        "format": "<span foreground='#929292'>{icon}</span>  {capacity}%",
+        "format-charging": "<span foreground='#929292'>{icon}</span>  {capacity}%",
+        "format-discharging": "<span foreground='#929292'>{icon}</span>  {time}",
+        "format-full": "<span foreground='#929292'>{icon}</span>  {capacity}%",
         "interval": 30,
         "states": {
             "warning": 25,
