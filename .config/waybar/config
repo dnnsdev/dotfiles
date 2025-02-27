@@ -10,7 +10,7 @@
     "margin-top": 2,
     "margin-bottom": 2,
     "modules-center": ["sway/workspaces", "sway/window"],
-    "modules-left": ["custom/hostname", "network", "battery", "memory", "temperature"],
+    "modules-left": ["network", "battery", "memory", "temperature"],
     "modules-right": ["custom/media", "pulseaudio", "tray", "clock"],
     // Configuration for individual modules
     "sway/workspaces": {
@@ -78,7 +78,7 @@
     },
 
     "network": {
-        "format-wifi": "󱚽 {essid} <span foreground='#929292'>{signalStrength}%</span>",
+        "format-wifi": "󱚽  {essid} <span foreground='#929292'>{signalStrength}%</span>",
         "format-ethernet": "<span foreground='#929292'>󰈀</span>  wired",
         "tooltip-format": "{ifname}: {gwaddr}",
         "format-linked": "{ifname} (No IP)",
@@ -109,11 +109,5 @@
         "on-click": "playerctl --player=spotify play-pause",
         "on-scroll-up": "playerctl --player=spotify next",
         "on-scroll-down": "playerctl --player=spotify previous"
-    },
-
-    "custom/hostname": {
-        "format": " {}",
-        "exec": "/usr/bin/hostname -f",
-        "interval": "once"
     }
 }
