@@ -3,7 +3,7 @@ These dotfiles are used on my (desktop) debian systems aiming towards consistent
 
 # Prerequisites
 * Debian 12 (as of now 12.9) - also works with `trixie/sid`
-* Wayland w/ sway
+* [Wayland](https://wayland.freedesktop.org/) with [Sway](https://swaywm.org/)
 
 # Install
 * Clone repo in root of user directory (e.g. /home/user)

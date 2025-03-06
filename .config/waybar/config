@@ -22,9 +22,9 @@
             "dev": "󰘦 ",
             "media": " ",
             "infra": "󰱠 ",
-            "urgent": "",
-            "focused": "",
-            "default": ""
+            "urgent": " ",
+            "focused": " ",
+            "default": " "
         }
     },
 
@@ -51,13 +51,14 @@
         "justify": "center",
         "rewrite": {
             "(.*) - VSCodium": " $1",
+            "(.*) - Visual Studio Code": " $1",
     		"(.*) - Thorium": " $1"
 	    }
     },
 
     "tray": {
-        "icon-size": 16,
-        "spacing": 5,
+        "icon-size": 13,
+        "spacing": 10,
     },
 
     "clock": {
