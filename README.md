@@ -2,7 +2,7 @@
 These dotfiles are used on my (desktop) debian systems aiming towards consistent environments.
 
 # Prerequisites
-* Debian 12 (as of now 12.9)
+* Debian 12 (as of now 12.9) - also works with `trixie/sid`
 * Wayland w/ sway
 
 # Install
