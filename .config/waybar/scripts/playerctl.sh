@@ -14,12 +14,12 @@ while true
             then
                 player_icon=""
             else
-                player_icon=""
+                player_icon=" "
         fi
 
         echo "$player_icon $(playerctl --player=spotify metadata artist) - $(playerctl --player=spotify metadata title)"
     fi
 
-    sleep 2 #sleep 2 seconds
+    sleep 2
 
   done
