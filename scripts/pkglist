@@ -234,6 +234,7 @@ python3-reportbug
 python3
 qemu-system-x86
 qemu-utils
+rancher-desktop
 readline-common
 remmina
 reportbug
