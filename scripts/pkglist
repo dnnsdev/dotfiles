@@ -225,6 +225,7 @@ pciutils
 perl-base
 perl
 playerctl
+powershell # i use this for PlayWright.
 procps
 pqiv
 pulsemixer

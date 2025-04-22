@@ -127,7 +127,8 @@ fi
 nala install fonts-font-awesome -y
 
 # skip installation of fonts when the directory already contains files
-if ![ "$(ls -A /home/$username/.fonts)" ]; then
+if ![ "$(ls -A /home/$username/.fonts)" ];
+then
 
   # firacode
   wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip
