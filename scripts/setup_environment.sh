@@ -194,17 +194,11 @@ source setup/rancher-desktop.sh
 source setup/dotnet-sdk.sh
 # > dotnet sdk
 
+# (home)brew
+source setup/homebrew.sh
+
 # < vesktop
-
-if [ $(which vesktop) == "" ];
-then
-
-  wget https://vencord.dev/download/vesktop/amd64/deb -O vesktop.deb
-
-  dpkg -i vesktop.deb
-
-fi
-
+source setup/vesktop.sh
 # > vesktop
 
 # < VSCodium
