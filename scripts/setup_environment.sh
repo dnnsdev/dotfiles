@@ -61,66 +61,24 @@ fi
 # > (vs)code
 
 # < fastfetch
-if [ $(which fastfetch) == "" ];
-then
-
-  wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.33.0/fastfetch-linux-amd64.deb
-  dpkg -i fastfetch-linux-amd64.deb
-
-fi
-
+source setup/fastfetch.sh
 # > fastfetch
 
 # < spotify
-
-if [ $(which spotify) == "" ];
-then
-
-  curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-  
-  echo "deb http://repository.spotify.com stable non-free" | tee /etc/apt/sources.list.d/spotify.list
-
-fi
-
+source setup/spotify.sh
 # > spotify
 
 # < owncloud-client
-
-if [ $(which owncloud) == "" ];
-then
-
-  wget -nv https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/Debian_12/Release.key -O - | gpg --dearmor | tee /etc/apt/trusted.gpg.d/owncloud-client.gpg > /dev/null
-
-  echo 'deb https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/Debian_12/ /' | tee -a /etc/apt/sources.list.d/owncloud-client.list
-
-fi
-
+source setup/owncloud-client.sh
 # > owncloud-client
 
-# source: https://github.com/jellyfin/jellyfin-media-player/wiki/Installing-on-Linux
-
-if [ $(which jellyfinmediaplayer) == "" ];
-then
-
-  version=$(curl --head https://github.com/jellyfin/jellyfin-media-player/releases/latest | tr -d '\r' | grep '^location' | sed 's/.*\/v//g')
-  wget "https://github.com/jellyfin/jellyfin-media-player/releases/download/v$version/jellyfin-media-player_$version-1_amd64-$(grep VERSION_CODENAME /etc/os-release | cut -d= -f2).deb" -O jmp.deb
-
-  nala install ./jmp.deb
-
-fi
-
-# > owncloud client
-
-# > starship
-
-if [ $(which starship) == "" ];
-then
-
-  curl -sS https://starship.rs/install.sh | sh
-
-fi
+# < jellyfinmediaplayer
+source setup/jellyfinmediaplayer.sh
+# > jellyfinmediaplayer
 
 # < starship
+source setup/starship.sh
+# > starship
 
 # < fonts
 
@@ -154,15 +112,7 @@ fi
 # > fonts
 
 # < thorium-browser
-if [ $(which thorium-browser) == "" ];
-then
-
-  wget -O ./thorium-browser.deb "$(curl -s https://api.github.com/repos/Alex313031/Thorium/releases/latest | grep browser_download_url | grep .deb | cut -d '"' -f 4)"
-
-  nala install ./thorium-browser.deb -y
-
-fi
-
+source setup/thorium-browser.sh
 # > thorium
 
 # < librewolf

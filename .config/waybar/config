@@ -19,7 +19,7 @@
         "format": "{icon} {name}",
         "format-icons": {
             "main": " ",
-            "dev": "󰘦 ",
+            "dev": "󰘦 ",D
             "media": " ",
             "infra": "󰱠 ",
             "urgent": " ",
