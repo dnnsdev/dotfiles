@@ -1,5 +1,15 @@
-if [ $(which rancher-desktop) == ""];
-then
+#!/bin/bash
+
+if ! command -v rancher-desktop >/dev/null 2>&1; then
+  
+  # Get the username (assuming it's the user with UID 1000)
+  username=$(getent passwd 1000 | cut -d: -f1)
+  
+  if [[ -z "$username" ]]; then
+    echo "Error: No user with UID 1000 found" >&2
+    exit 1
+  fi
+
   # add user to kvm group
   usermod -a -G kvm $username
 

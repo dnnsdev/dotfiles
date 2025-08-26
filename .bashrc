@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 iatest=$(expr index "$-" i)
 
-#######################################################
-# SOURCED ALIASES AND SCRIPTS BY zachbrowne.me
-#######################################################
-if [ -f /usr/bin/fastfetch ]; then
-	fastfetch
+# Instead of running fastfetch always, make it conditional
+if [ -f /usr/bin/fastfetch ] && [ -z "$FASTFETCH_SHOWN" ]; then
+    fastfetch
+    export FASTFETCH_SHOWN=1
 fi
 
 # Source global definitions
@@ -99,7 +98,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # Alias's to modified commands
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='trash -v'
+alias rm='trash-put'
 alias mkdir='mkdir -p'
 alias ps='ps auxf'
 alias ping='ping -c 10'
@@ -417,7 +416,15 @@ trim() {
 # git additions because i'm lazy
 # inspired by 'GitHub Titus Additions'
 gitc() {
-	git commit -m "$1" -a
+    if [[ -z "$1" ]]; then
+        echo "Error: Commit message required" >&2
+        return 1
+    fi
+    git add -A && git commit -m "$1"
+}
+
+gits() {
+    git status --short
 }
 
 gitp() {
@@ -433,7 +440,18 @@ fi
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 
-export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:/.local/share/flatpak/exports/bin"
+# Function to safely add to PATH
+add_to_path() {
+    if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+        export PATH="$1:$PATH"
+    fi
+}
+
+# Use the function
+add_to_path "$HOME/.local/bin"
+add_to_path "$HOME/.cargo/bin"
+add_to_path "/var/lib/flatpak/exports/bin"
+add_to_path "$HOME/.local/share/flatpak/exports/bin"
 
 # Export display for playerctl
 export DISPLAY=:0.0

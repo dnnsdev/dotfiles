@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e # exit on error
+set -u # exit on undefined variable
+
 # Check if script is run as root
 if [[ $EUID -ne 0 ]]; then
   echo "You must be a root user to run this script" 2>&1
@@ -8,6 +11,10 @@ fi
 
 # first user
 username=$(id -u -n 1000)
+if [[ -z "$username" ]]; then
+  echo "No user with UID 1000 found" >&2
+  exit 1
+fi
 
 # build directory
 builddir=$(pwd)
@@ -24,10 +31,8 @@ apt-get install ca-certificates curl wget gpg apt-transport-https nala
 # install repos
 
 # < Docker
-
-if [ $(which docker) == "" ];
-then
-
+if ! command -v docker >/dev/null 2>&1; then
+  mkdir -p /etc/apt/keyrings
   apt-get install -m 0755 -d /etc/apt/keyrings
   curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
   chmod a+r /etc/apt/keyrings/docker.asc
@@ -40,7 +45,10 @@ then
 
   nala install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-  groupadd docker
+  if ! getent group docker >/dev/null; then
+    groupadd docker
+  fi
+
   usermod -aG docker $username
 
 fi
@@ -48,8 +56,7 @@ fi
 # > Docker
 
 # < (vs)code
-if [ $(which code) == "" ];
-then
+if ! command -v code >/dev/null 2>&1; then
 
   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 
@@ -57,63 +64,51 @@ then
 
   echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | tee /etc/apt/sources.list.d/vscode.list > /dev/null
 
+  rm packages.microsoft.gpg
 fi
 # > (vs)code
 
-# < fastfetch
-source setup/fastfetch.sh
-# > fastfetch
-
-# < spotify
-source setup/spotify.sh
-# > spotify
-
-# < owncloud-client
-source setup/owncloud-client.sh
-# > owncloud-client
-
-# < jellyfinmediaplayer
-source setup/jellyfinmediaplayer.sh
-# > jellyfinmediaplayer
-
-# < starship
-source setup/starship.sh
-# > starship
+# Source external setup scripts if they exist
+for script in setup/fastfetch.sh setup/spotify.sh setup/owncloud-client.sh setup/jellyfinmediaplayer.sh setup/starship.sh setup/thorium-browser.sh setup/rancher-desktop.sh setup/dotnet-sdk.sh setup/homebrew.sh setup/vesktop.sh; do
+  if [[ -f "$script" ]]; then
+    echo "Sourcing $script"
+    source "$script"
+  else
+    echo "Warning: $script not found, skipping..." >&2
+  fi
+done
 
 # < fonts
 
 nala install fonts-font-awesome -y
 
 # skip installation of fonts when the directory already contains files
-if ![ "$(ls -A /home/$username/.fonts)" ];
+if [[ -z "$(ls -A "/home/$username/.fonts" 2>/dev/null)" ]]; then
 then
 
+  cd /tmp  # Use tmp directory for downloads
+  
   # firacode
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip
-
-  unzip FiraCode.zip -d /home/$username/.fonts
+  if wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip; then
+    unzip -q FiraCode.zip -d "/home/$username/.fonts"
+    rm FiraCode.zip
+  else
+    echo "Warning: Failed to download FiraCode font" >&2
+  fi
 
   # meslo
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Meslo.zip
+  if wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Meslo.zip; then
+    unzip -q Meslo.zip -d "/home/$username/.fonts"
+    rm Meslo.zip
+  else
+    echo "Warning: Failed to download Meslo font" >&2
+  fi
 
-  unzip Meslo.zip -d /home/$username/.fonts
-
-  # chown whole directory for first user
-  chown -R $username:$username /home/$username
-
-  # Reloading font cache
-  fc-cache -vf
-
-  # Removing zip Files
-  rm *.zip
+  cd "$builddir"  # Return to original directory
 
 fi
 
 # > fonts
-
-# < thorium-browser
-source setup/thorium-browser.sh
-# > thorium
 
 # < librewolf
 #if [ $(which librewolf) == "" ];
@@ -136,24 +131,9 @@ source setup/thorium-browser.sh
 
 # > librewolf
 
-# < rancher-desktop
-source setup/rancher-desktop.sh
-# >
-
-# < dotnet sdk
-source setup/dotnet-sdk.sh
-# > dotnet sdk
-
-# (home)brew
-source setup/homebrew.sh
-
-# < vesktop
-source setup/vesktop.sh
-# > vesktop
-
 # < VSCodium
 
-if [ $(which codium) == "" ];
+if ! command -v codium >/dev/null 2>&1; then
 then
 
   wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
@@ -167,19 +147,37 @@ fi
 
 # > VSCodium
 
-apt-get install $(grep -o '^[^#]*' pkglist)
+# Install packages from pkglist if file exists
+if [[ -f "pkglist" ]]; then
+  # Filter out comments and empty lines, then install
+  packages=$(grep -v '^#' pkglist | grep -v '^$' | tr '\n' ' ')
+  if [[ -n "$packages" ]]; then
+    apt-get install -y $packages
+  fi
+else
+  echo "Warning: pkglist file not found" >&2
+fi
 
-# as a baseinstall i use debian 12 w/ kde
-# so.. here should follow stuff to cleanup (obsolete) packages from kde
-# todo: remove packages (such as (neo)vim) i don't need
-apt-get remove $(grep -o '^[^#]*' shitlist)
+# Remove packages from shitlist if file exists  
+if [[ -f "shitlist" ]]; then
+  packages_to_remove=$(grep -v '^#' shitlist | grep -v '^$' | tr '\n' ' ')
+  if [[ -n "$packages_to_remove" ]]; then
+    apt-get remove -y $packages_to_remove || true  # Don't fail if packages don't exist
+  fi
+else
+  echo "Warning: shitlist file not found" >&2
+fi
 
-# remove all downloaded debs
-rm *.deb
+# Clean up any downloaded debs in current directory
+rm -f *.deb
 
-# Effort to remove KDE leftovers
-apt autoremove --purge kde*
+# Effort to remove KDE leftovers (be more careful)
+if dpkg -l | grep -q kde; then
+  apt-get autoremove --purge -y 'kde*' || true
+fi
 
 # clean up apt
 apt autoremove
 apt autoclean
+
+echo "Environment setup completed successfully!"
