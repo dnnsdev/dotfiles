@@ -14,6 +14,10 @@ if ! command -v dotnet >/dev/null 2>&1; then
   wget -q "$download_url" -O packages-microsoft-prod.deb
 
   dpkg -i packages-microsoft-prod.deb
+
+  rm packages-microsoft-prod.deb
+
+  apt-get install -y dotnet-sdk-9.0
 fi
 
 # Verify installation
