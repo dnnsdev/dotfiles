@@ -2,9 +2,9 @@
 
 echo "[INFO] Checking if thorium-browser is installed..."
 
-if ! command -v thorium >/dev/null 2>&1; then
+if ! command -v thorium-browser >/dev/null 2>&1; then
   echo "[INFO] Thorium Browser not found. Downloading latest .deb package..."
-  DEB_URL=$(curl -s https://api.github.com/repos/Alex313031/Thorium/releases/latest | grep browser_download_url | grep .deb | cut -d '"' -f 4)
+  DEB_URL=$(curl -s https://api.github.com/repos/Alex313031/Thorium/releases/latest | grep browser_download_url | grep 4.deb | cut -d '"' -f 4)
   if [ -z "$DEB_URL" ]; then
     echo "[ERROR] Could not find download URL for Thorium Browser .deb package." >&2
     exit 1

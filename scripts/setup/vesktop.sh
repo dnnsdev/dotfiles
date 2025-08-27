@@ -7,5 +7,5 @@ if ! command -v vesktop >/dev/null 2>&1; then
   dpkg -i vesktop.deb
 
 else
-  echo "Vesktop is already installed, skipping..."
+  echo "[INFO] Vesktop is already installed, skipping..."
 fi
