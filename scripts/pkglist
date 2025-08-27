@@ -10,12 +10,16 @@ sway
 swaybg
 swayidle
 swayimg
+btop
 swaylock
 spotify-client
 sway-notification-center
 thunar
+playerctl
 thunderbird
 tlp-rdw
+brightnessctl
+pulsemixer
 tlp
 unzip
 virt-manager
