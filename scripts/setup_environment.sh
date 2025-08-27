@@ -24,20 +24,16 @@ builddir=$(pwd)
 
 mkdir -p /home/$username/Pictures
 mkdir -p /home/$username/Pictures/backgrounds
-# chown -R $username:$username /home/$username
+
+chown -R $username:$username /home/$username
 
 # prerequisites for stuff below
 apt-get update
 apt-get upgrade
 apt-get install ca-certificates curl wget gpg apt-transport-https nala 
 
-# install repos
-
-# < Docker
-# > Docker
-
 # Source external setup scripts if they exist
-for script in setup/fonts.sh setup/vscode.sh setup/spotify.sh setup/owncloud-client.sh setup/jellyfinmediaplayer.sh setup/starship.sh setup/thorium-browser.sh setup/rancher-desktop.sh setup/vesktop.sh; do
+for script in setup/audio.sh setup/fonts.sh setup/vscode.sh setup/spotify.sh setup/owncloud-client.sh setup/jellyfinmediaplayer.sh setup/starship.sh setup/thorium-browser.sh setup/rancher-desktop.sh setup/vesktop.sh; do
   if [[ -f "$script" ]]; then
     echo "Sourcing $script"
     source "$script"
@@ -45,27 +41,6 @@ for script in setup/fonts.sh setup/vscode.sh setup/spotify.sh setup/owncloud-cli
     echo "Warning: $script not found, skipping..." >&2
   fi
 done
-
-# < librewolf
-#if [ $(which librewolf) == "" ];
-#then
-
-#  wget -O- https://download.opensuse.org/repositories/home:/bgstack15:/aftermozilla/Debian_Unstable/Release.key | gpg --dearmor -o /etc/apt/keyrings/home_bgstack15_aftermozilla.gpg
-
-#  tee /etc/apt/sources.list.d/home_bgstack15_aftermozilla.sources << EOF > /dev/null
-#  Types: deb
-#  URIs: https://download.opensuse.org/repositories/home:/bgstack15:/aftermozilla/Debian_Unstable/
-#  Suites: /
-#  Signed-By: /etc/apt/keyrings/home_bgstack15_aftermozilla.gpg
-#EOF
-
-#  nala update
-
-#  nala install librewolf -y
-
-#fi
-
-# > librewolf
 
 # Install packages from pkglist if file exists
 if [[ -f "pkglist" ]]; then

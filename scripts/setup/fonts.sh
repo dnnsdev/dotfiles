@@ -1,31 +1,40 @@
+nala install fonts-font-awesome -y
 #!/bin/bash
+set -euo pipefail
+
+# Check for required commands
+for cmd in nala wget unzip; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "[ERROR] Required command '$cmd' not found. Please install it first." >&2
+    exit 1
+  fi
+done
+
+# Use current user if $username is not set
+FONT_USER="${username:-$USER}"
+FONT_DIR="/home/$FONT_USER/.fonts"
+mkdir -p "$FONT_DIR"
 
 nala install fonts-font-awesome -y
 
-# skip installation of fonts when the directory already contains files
-if [[ -z "$(ls -A "/home/$username/.fonts" 2>/dev/null)" ]]; then
+# Skip installation if fonts directory already contains files
+if [[ -z "$(ls -A "$FONT_DIR" 2>/dev/null)" ]]; then
+  TMPDIR=$(mktemp -d)
+  cd "$TMPDIR"
 
-  cd /tmp  # Use tmp directory for downloads
-  
-  # firacode
-  if wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip; then
-    echo "Installing FiraCode font"
-    
-    unzip -oq FiraCode.zip -d "/home/$username/.fonts"
-  else
-    echo "Warning: Failed to download FiraCode font" >&2
-  fi
+  for FONT in FiraCode Meslo; do
+    ZIP_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/${FONT}.zip"
+    if wget -q "$ZIP_URL"; then
+      echo "Installing $FONT font"
+      unzip -oq "${FONT}.zip" -d "$FONT_DIR"
+    else
+      echo "Warning: Failed to download $FONT font" >&2
+    fi
+  done
 
-  # meslo
-  if wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Meslo.zip; then
-    echo "Installing Meslo font"
-    
-    unzip -oq Meslo.zip -d "/home/$username/.fonts"
-  else
-    echo "Warning: Failed to download Meslo font" >&2
-  fi
-
-  rm *.zip  # Clean up any remaining zip files
-  cd "$builddir"  # Return to original directory
-
+  rm -f ./*.zip
+  cd - >/dev/null
+  rm -rf "$TMPDIR"
+else
+  echo "[INFO] Fonts already present in $FONT_DIR, skipping installation."
 fi

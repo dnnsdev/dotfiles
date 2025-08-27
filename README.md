@@ -15,7 +15,7 @@ These dotfiles are used on my (desktop) debian systems aiming towards consistent
 cd ~
 git init
 git remote add origin https://github.com/dnnsdev/dotfiles
-git pull origin master
+git pull origin main
 ```
 
 These dotfiles are always in development and do not always represent the current state that they are in, as they are changed throughout time. In these files I took inspiration from other people too, so all credits to whom helped me out too.
