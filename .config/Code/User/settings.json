@@ -1,5 +1,6 @@
 {
     "editor.fontFamily": "MesloLGS Nerd Font, Regular",
     "editor.fontLigatures": true,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "git.enableSmartCommit": true
 }
