@@ -98,12 +98,12 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # EG: the ls command is aliased, but to use the normal ls command you would type \ls
 
 # Alias's to modified commands
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='trash-put'
+alias cp='rsync -ah --progress --no-perms --no-owner --no-group'
+alias mv='mv -iv'
+alias rm='trash-put -i'
 alias mkdir='mkdir -p'
-alias ps='ps auxf'
-alias ping='ping -c 10'
+alias ps='ps auxf --sort=-%mem'
+alias ping='ping -c 10 -i 0.2'
 alias multitail='multitail --no-repeat -c'
 alias scrot='grim' # uses grim to take screenshot on wayland
 alias sscrot='slurp | grim -g - $outputFile' #slurp makes sure that an area can be selected and then piped into grim
@@ -144,11 +144,11 @@ alias lls='ls -l'                 # List
 
 # alias chmod commands
 alias mx='chmod a+x'
-alias 000='chmod -R 000'
-alias 644='chmod -R 644'
-alias 666='chmod -R 666'
-alias 755='chmod -R 755'
-alias 777='chmod -R 777'
+alias chmod000='chmod -R 000'
+alias chmod644='chmod -R 644'
+alias chmod666='chmod -R 666'
+alias chmod755='chmod -R 755'
+alias chmod777='chmod -R 777'
 
 # Search command line history
 alias h="history | grep "
@@ -306,77 +306,23 @@ pwdtail() {
 	pwd | awk -F/ '{nlast = NF -1;print $nlast"/"$NF}'
 }
 
-# Show the current distribution
-distribution () {
-    local dtype="unknown"  # Default to unknown
-
-    # Use /etc/os-release for modern distro identification
-    if [ -r /etc/os-release ]; then
-        source /etc/os-release
-        case $ID in
-            fedora|rhel|centos)
-                dtype="redhat"
-                ;;
-            sles|opensuse*)
-                dtype="suse"
-                ;;
-            ubuntu|debian)
-                dtype="debian"
-                ;;
-            gentoo)
-                dtype="gentoo"
-                ;;
-            arch|manjaro)
-                dtype="arch"
-                ;;
-            slackware)
-                dtype="slackware"
-                ;;
-            *)
-                # Check ID_LIKE only if dtype is still unknown
-                if [ -n "$ID_LIKE" ]; then
-                    case $ID_LIKE in
-                        *fedora*|*rhel*|*centos*)
-                            dtype="redhat"
-                            ;;
-                        *sles*|*opensuse*)
-                            dtype="suse"
-                            ;;
-                        *ubuntu*|*debian*)
-                            dtype="debian"
-                            ;;
-                        *gentoo*)
-                            dtype="gentoo"
-                            ;;
-                        *arch*)
-                            dtype="arch"
-                            ;;
-                        *slackware*)
-                            dtype="slackware"
-                            ;;
-                    esac
-                fi
-
-                # If ID or ID_LIKE is not recognized, keep dtype as unknown
-                ;;
-        esac
-    fi
-
-    echo $dtype
-}
-
 alias cat='batcat'
 
 # IP address lookup
 alias whatismyip="whatsmyip"
 function whatsmyip () {
-    # Internal IP Lookup.
+    iface=$(ip route get 1.1.1.1 2>/dev/null | awk '{for(i=1;i<=NF;i++) if ($i=="dev") print $(i+1)}')
+    if [ -z "$iface" ]; then
+        iface=$(route | grep '^default' | awk '{print $8}')
+    fi
+
+    # Internal IP Lookup
     if command -v ip &> /dev/null; then
         echo -n "Internal IP: "
-        ip addr show enp88s0 | grep "inet " | awk '{print $2}' | cut -d/ -f1
+        ip addr show "$iface" | grep "inet " | awk '{print $2}' | cut -d/ -f1
     else
         echo -n "Internal IP: "
-        ifconfig enp88s0 | grep "inet " | awk '{print $2}'
+        ifconfig "$iface" | grep "inet " | awk '{print $2}'
     fi
 
     # External IP Lookup
@@ -395,11 +341,18 @@ trim() {
 # git additions because i'm lazy
 # inspired by 'GitHub Titus Additions'
 gitc() {
-    if [[ -z "$1" ]]; then
-        echo "Error: Commit message required" >&2
+    if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+        echo "Error: Not a git repository." >&2
         return 1
     fi
-    git add -A && git commit -m "$1"
+    if [[ $# -eq 0 ]]; then
+        echo "Error: Commit message required." >&2
+        return 1
+    fi
+    git add -A
+    echo "Staged changes:"
+    git status --short
+    git commit -m "$*"
 }
 
 gits() {
