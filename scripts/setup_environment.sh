@@ -4,7 +4,7 @@ set -e # exit on error
 set -u # exit on undefined variable
 
 # Check if script is run as root
-if [[ $EUID -ne 0 ]]; then
+if [[ "$EUID" -ne 0 ]]; then
   echo "You must be a root user to run this script" 2>&1
   exit 1
 fi
@@ -17,15 +17,15 @@ if [[ -z "$username" ]]; then
 fi
 
 # add first user to sudo group
-usermod -aG sudo $username
+usermod -aG sudo "$username"
 
 # build directory
-builddir=$(pwd)
+builddir="$(pwd)"
 
-mkdir -p /home/$username/Pictures
-mkdir -p /home/$username/Pictures/backgrounds
+mkdir -p "/home/$username/Pictures"
+mkdir -p "/home/$username/Pictures/backgrounds"
 
-chown -R $username:$username /home/$username
+chown -R "$username:$username" "/home/$username"
 
 # prerequisites for stuff below
 apt-get update
@@ -64,7 +64,7 @@ else
 fi
 
 # Clean up any downloaded debs in current directory
-rm -f *.deb
+rm -f ./*.deb
 
 # Effort to remove KDE leftovers (be more careful)
 if dpkg -l | grep -q kde; then
