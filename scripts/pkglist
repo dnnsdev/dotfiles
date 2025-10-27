@@ -9,9 +9,11 @@ remmina
 sway
 bat
 swaybg
+jq
 swayidle
 swayimg
 btop
+trash-cli
 swaylock
 spotify-client
 sway-notification-center

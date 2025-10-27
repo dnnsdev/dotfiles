@@ -381,14 +381,13 @@ add_to_path() {
 
 # Use the function
 add_to_path "$HOME/.local/bin"
+add_to_path "$HOME/.bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "/var/lib/flatpak/exports/bin"
 add_to_path "$HOME/.local/share/flatpak/exports/bin"
+add_to_path "$HOME/.rd/bin"
 
 # Export display for playerctl
 export DISPLAY=:0.0
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/home/dennis/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
