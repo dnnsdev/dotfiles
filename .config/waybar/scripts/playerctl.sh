@@ -1,23 +1,27 @@
 #!/bin/sh
 
-while true
-  do
-    player_status=$(playerctl status --player=spotify 2> /dev/null)
-    
-    if [ $player_status = "No players found" or $player_status = "" ];
-        then
-            f=""
-    else
-        player_icon=""
+set -e
 
-        if [ $player_status = "Playing" ];
-            then
-                player_icon=""
-            else
-                player_icon=" "
+# Handle termination signals gracefully
+trap cleanup TERM INT
+
+while true; do
+    metadata=$(playerctl --player=spotify metadata --format "{{status}}|{{artist}}|{{title}}" 2>/dev/null)
+    
+    if [ -z "$metadata" ] || [ "$metadata" = "No players found" ]; then
+        echo ""
+    else
+        status=$(echo "$metadata" | cut -d'|' -f1)
+        artist=$(echo "$metadata" | cut -d'|' -f2)
+        title=$(echo "$metadata" | cut -d'|' -f3)
+        
+        if [ "$status" = "Playing" ]; then
+            player_icon=""
+        else
+            player_icon=" "
         fi
 
-        echo "$player_icon $(playerctl --player=spotify metadata artist) - $(playerctl --player=spotify metadata title)"
+        echo "$player_icon $artist - $title"
     fi
 
     sleep 2
