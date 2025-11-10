@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Usage: ./translate.sh "text" "target"
-# Example: ./translate.sh "Hello i suck" "gr"
-# Or when in path: translate "Hello i suck" "gr"
+# Usage: ./translate.sh "text" "target" [sourceLanguage]
+# Example: ./translate.sh "Hello i suck" "gr" "en"
+# Or when in path: translate "Hello i suck" "gr" "en"
 
 # Check if jq is available
 # Since this is a prerequisite for parsing JSON responses
@@ -27,13 +27,14 @@ fi
 
 text="$1"
 targetLanguage="${2:-nl}"
+sourceLanguage="${3:-auto}"
 libreTranslateHost="http://192.168.1.170:5000"
 
 curl -s -X POST "${libreTranslateHost}/translate" \
      -H "Content-Type: application/json" \
      --data '{
         "q": "'"${text}"'",
-        "source": "auto",
+        "source": "'"${sourceLanguage}"'",
         "target": "'"${targetLanguage}"'",
         "format": "text",
         "alternatives": 0,
