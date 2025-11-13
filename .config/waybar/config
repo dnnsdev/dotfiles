@@ -16,6 +16,7 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
+        "cursor": true,
         "format": "{icon} {name}",
         "format-icons": {
             "main": " ",
@@ -64,7 +65,8 @@
     "clock": {
         "timezone": "Europe/Amsterdam",
         "format": "  {:%a %d %b   %H:%M}",
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "cursor": true
     },
 
     "memory": {
