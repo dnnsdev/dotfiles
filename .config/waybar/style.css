@@ -4,50 +4,52 @@
     font-family: "MesloLGS NF";
     font-weight: 400;
     font-size: 13px;
-    min-height: 0;
+    min-height: 24px;
 }
 
 window#waybar {
-    background: rgba(30, 30, 46, 0.8);
+    background: rgba(30, 30, 46, 1);
     margin: 0px;
+    padding: 0px;
     color: #cdd6f4;
     font-weight: 500;
 }
 
 #window {
-    padding-top: 3px;
-    font-weight: bold;
+    padding:0;
+    margin:0;
 }
 
 #workspaces {
-    padding: 0 3px;
-    margin-right: 10px;
+    border-radius: 6px;
+    margin: 0 6px;
 }
 
 #workspaces button {
-    padding: 0 3px;
+    padding: 4px 4px;
     background: transparent;
-    color: white;
-    border-top: 2px solid transparent;
+    color: rgba(205, 214, 244, 0.7);
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
     #workspaces button:hover {
-        box-shadow: none; /* Remove predefined box-shadow */
-        text-shadow: none; /* Remove predefined text-shadow */
-        background: none; /* Remove predefined background color (white) */
-        transition: none; /* Disable predefined animations */
+        background: rgba(255, 255, 255, 0.1);
+        color: #cdd6f4;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
 #workspaces button.focused {
-    color: #eeeeee;
-    border-top: 4px solid #c9545d;
+    background: linear-gradient(135deg, #c9545d, #e06b75);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 
+        0 4px 16px rgba(201, 84, 93, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
     #workspaces button.focused:hover {
-        box-shadow: none; /* Remove predefined box-shadow */
-        text-shadow: none; /* Remove predefined text-shadow */
-        background: none; /* Remove predefined background color (white) */
-        transition: none; /* Disable predefined animations */
+        background: linear-gradient(135deg, #d16d76, #e78a93);
     }
 
 #mode {
@@ -56,14 +58,33 @@ window#waybar {
 }
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #custom-hostname {
-    padding: 0 3px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 6px 12px;
     margin: 0 2px;
+    font-weight: 500;
+}
+
+#clock:hover, #battery:hover, #cpu:hover, #memory:hover, #network:hover, #pulseaudio:hover, #custom-spotify:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 #network.disconnected {
     background: #f53c3c;
 }
 
+/* Clock with accent */
+#clock {
+    background: linear-gradient(135deg, rgba(137, 180, 250, 0.1), rgba(180, 190, 254, 0.1));
+    border-color: rgba(137, 180, 250, 0.2);
+    color: #89b4fa;
+    font-weight: 600;
+}
+
 #pulseaudio {
-    margin-left: 5px;
+    background: linear-gradient(135deg, rgba(166, 227, 161, 0.1), rgba(148, 226, 213, 0.1));
+    border-color: rgba(166, 227, 161, 0.2);
+    color: #a6e3a1;
 }
