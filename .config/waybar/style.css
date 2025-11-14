@@ -2,22 +2,15 @@
     border: none;
     border-radius: 0;
     font-family: "MesloLGS NF";
-    font-weight: 400;
-    font-size: 13px;
-    min-height: 24px;
+    font-weight: 900;
+    font-size: 1em;
+    padding: 0.25em;
 }
 
 window#waybar {
     background: rgba(30, 30, 46, 1);
-    margin: 0px;
-    padding: 0px;
     color: #cdd6f4;
-    font-weight: 500;
-}
-
-#window {
-    padding:0;
-    margin:0;
+    font-weight: 300;
 }
 
 #workspaces {

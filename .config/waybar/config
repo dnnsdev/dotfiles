@@ -1,14 +1,12 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 28,
-    "spacing": 1,
-    "margin-top": 2,
-    "margin-bottom": 2,
+    "height": 20,
+    "spacing": 2,
     "modules-center": ["sway/workspaces", "sway/window"],
     "modules-left": ["network", "battery", "memory", "temperature"],
     "modules-right": ["custom/media", "pulseaudio", "tray", "clock"],
-    // Configuration for individual modules
+
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
