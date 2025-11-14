@@ -391,3 +391,7 @@ add_to_path "$HOME/.rd/bin"
 export DISPLAY=:0.0
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/home/dennis/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
