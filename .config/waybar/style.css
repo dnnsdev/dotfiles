@@ -57,7 +57,7 @@ window#waybar {
     border-bottom: 3px solid white;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #custom-hostname {
+#clock, #battery, #cpu, #memory, #temperature, #network, #pulseaudio, #custom-spotify, #tray, #mode, #custom-hostname {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 6px;
     padding: 6px 12px;
@@ -65,7 +65,7 @@ window#waybar {
     font-weight: 500;
 }
 
-#clock:hover, #battery:hover, #cpu:hover, #memory:hover, #network:hover, #pulseaudio:hover, #custom-spotify:hover {
+#clock:hover, #battery:hover, #cpu:hover, #memory:hover, #temperature:hover, #network:hover, #pulseaudio:hover, #custom-spotify:hover {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
