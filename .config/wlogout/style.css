@@ -1,0 +1,24 @@
+window {
+    font-size: 12pt;
+    color: #f4dfcd; 
+    background-color: rgba(30, 30, 46, .69);
+}
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 3.25em;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    border: 1px solid rgba(30, 30, 46, 1);
+    color: #d5b497;
+    text-shadow: none;
+    border-radius: 0.25em;
+    background: #64727D;
+    margin: 0.25em;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: rgba(133, 146, 157, 0.25);
+}
