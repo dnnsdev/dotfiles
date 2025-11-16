@@ -27,3 +27,6 @@ After rebooting, you may need to:
 * Log out and log back in for group changes to take effect
 * Configure your shell to use the new dotfiles
 * Restart any applications that use the new configurations
+
+## Result
+![Desktop Screenshot](scrot.png)

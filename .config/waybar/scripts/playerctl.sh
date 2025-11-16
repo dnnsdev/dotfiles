@@ -24,6 +24,6 @@ while true; do
         echo "$player_icon $artist - $title"
     fi
 
-    sleep 2
+    sleep 3
 
   done
