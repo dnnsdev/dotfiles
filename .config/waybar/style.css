@@ -7,14 +7,18 @@
     padding: 0.25em;
 }
 
-window#waybar {
+#waybar {
     background: rgba(30, 30, 46, 1);
     color: #cdd6f4;
     font-weight: 300;
 }
 
+#window {
+    color: #ffffff;
+}
+
 #workspaces {
-    border-radius: 6px;
+    border-radius: 4px;
     margin: 0 6px;
 }
 
@@ -36,9 +40,6 @@ window#waybar {
     background: linear-gradient(135deg, #c9545d, #e06b75);
     color: #ffffff;
     font-weight: 600;
-    box-shadow: 
-        0 4px 16px rgba(201, 84, 93, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
     #workspaces button.focused:hover {
