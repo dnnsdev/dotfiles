@@ -16,9 +16,9 @@ while true; do
         title=$(echo "$metadata" | cut -d'|' -f3)
         
         if [ "$status" = "Playing" ]; then
-            player_icon=""
+            player_icon="▶"
         else
-            player_icon=" "
+            player_icon="⏸"
         fi
 
         echo "$player_icon $artist - $title"

@@ -112,7 +112,7 @@
 
     "custom/media": {
         "exec": "~/.config/waybar/scripts/playerctl.sh",
-        "format": " {}",
+        "format": "  {}",
         "max-length": 40,
         "on-click": "playerctl --player=spotify play-pause",
         "on-scroll-up": "playerctl --player=spotify next",
