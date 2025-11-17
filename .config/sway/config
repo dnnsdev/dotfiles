@@ -1,7 +1,6 @@
-#====================================================================#
-# Feel free to modify to your needs                                  #
-# Reload cfg: Super + Shift + C.                                     #
-#====================================================================#
+#===================================#
+# Reload cfg: Super + Shift + C.    #
+#===================================#
 
 # Declare colors and themes
 set $gtk-theme Dracula
@@ -41,7 +40,7 @@ set $alt Mod1
 bindsym $mod+Shift+c reload
 
 # Possibly quit via wlogout
-bindsym $mod+Shift+e exec wlogout
+bindsym $mod+Shift+e exec "pgrep wlogout || wlogout"
 
 # Screen locking (automatic, with a timeout)
 set $lock swaylock -c 550000
