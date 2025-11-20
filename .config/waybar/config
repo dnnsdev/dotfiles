@@ -45,8 +45,8 @@
         "format": "{}",
         "max-length": 50,
         "rewrite": {
-            "(.*) - VSCodium": " $1",
-            "(.*) - Visual Studio Code": " $1",
+            "(.*) - VSCodium": "  $1",
+            "(.*) - Visual Studio Code": "  $1",
     		"(.*) - Thorium": " $1"
 	    }
     },
@@ -95,7 +95,7 @@
         "format": " {temperatureC}°C",
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C ",
-        "interval": 10
+        "interval": 30
     },
 
     "network": {
@@ -105,9 +105,9 @@
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "exec foot nmtui-connect",
+        "on-click-right": "pgrep -x nmtui-connect > /dev/null || exec /usr/bin/foot nmtui-connect",
         "tooltip": false,
-        "interval": 30
+        "interval": 60
     },
 
     "battery": {
