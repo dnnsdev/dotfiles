@@ -16,8 +16,10 @@ if [[ -z "$username" ]]; then
   exit 1
 fi
 
-# add first user to sudo group
+# add first user to several groups
 usermod -aG sudo "$username"
+usermod -aG libvirt "$username"
+usermod -aG kvm "$username"
 
 # build directory
 builddir="$(pwd)"
