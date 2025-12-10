@@ -74,11 +74,9 @@ export LS_COLORS='no=00:fi=00:di=00;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 
 # Check if ripgrep is installed
 if command -v rg &> /dev/null; then
-    # Alias grep to rg if ripgrep is installed
-    alias grep='rg'
+    alias grep='rg --color=auto'
 else
-    # Alias grep to /usr/bin/grep with GREP_OPTIONS if ripgrep is not installed
-    alias grep="/usr/bin/grep $GREP_OPTIONS"
+    alias grep='grep --color=auto'
 fi
 unset GREP_OPTIONS
 
@@ -226,7 +224,11 @@ ftext() {
 	# -n causes line number to be printed
 	# optional: -F treat search term as a literal, not a regular expression
 	# optional: -l only print filenames and not the matching lines ex. grep -irl "$1" *
-	grep -iIHrn --color=always "$1" . | less -r
+	if command -v rg &> /dev/null; then
+        rg -i -n --color=always "$1" . | less -r
+    else
+        grep -iIHrn --color=always "$1" . | less -r
+    fi
 }
 
 # Copy file with a progress bar
@@ -275,16 +277,16 @@ mkdirg() {
 
 # Goes up a specified number of directories  (i.e. up 4)
 up() {
-	local d=""
-	limit=$1
-	for ((i = 1; i <= limit; i++)); do
-		d=$d/..
-	done
-	d=$(echo $d | sed 's/^\///')
-	if [ -z "$d" ]; then
-		d=..
-	fi
-	cd $d
+    local d=""
+    local limit="$1"
+    for ((i = 1; i <= limit; i++)); do
+        d="$d/.."
+    done
+    d="${d#/}"  # Remove leading slash more efficiently
+    if [ -z "$d" ]; then
+        d=".."
+    fi
+    cd "$d"
 }
 
 # Automatically do an ls after each cd, z, or zoxide
@@ -341,22 +343,42 @@ gitc() {
         echo "Error: Not a git repository." >&2
         return 1
     fi
+
     if [[ $# -eq 0 ]]; then
         echo "Error: Commit message required." >&2
+        echo "Usage: gitc <commit message>" >&2
         return 1
     fi
+    
     git add -A
     echo "Staged changes:"
     git status --short
-    git commit -m "$*"
+    
+    if ! git commit -m "$*"; then
+        echo "Error: Commit failed." >&2
+        return 1
+    fi
 }
 
 gits() {
+	if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+        echo "Error: Not a git repository." >&2
+        return 1
+    fi
+
     git status --short
 }
 
 gitp() {
-	git push
+	if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+        echo "Error: Not a git repository." >&2
+        return 1
+    fi
+    
+    if ! git push; then
+        echo "Error: Push failed." >&2
+        return 1
+    fi
 }
 
 # Check if the shell is interactive
