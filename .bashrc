@@ -94,7 +94,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 #######################################################
 # GENERAL ALIASES
 #######################################################
-# To temporarily bypass an alias, we precede the command with a \
+# To temporarily bypass an alias, precede the command with a \
 # EG: the ls command is aliased, but to use the normal ls command you would type \ls
 
 # Alias's to modified commands
@@ -107,6 +107,9 @@ alias ping='ping -c 10 -i 0.2'
 alias multitail='multitail --no-repeat -c'
 alias scrot='grim' # uses grim to take screenshot on wayland
 alias sscrot='slurp | grim -g - $outputFile' #slurp makes sure that an area can be selected and then piped into grim
+
+# System update alias
+alias sysupdate='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean'
 
 # Change directory aliases
 # alias cd='z'
@@ -133,14 +136,10 @@ alias lu='ls -lturh'              # sort by access time
 alias lr='ls -lRh'                # recursive ls
 alias lt='ls -ltrh'               # sort by date
 alias lm='ls -alh |more'          # pipe through 'more'
-alias lw='ls -xAh'                # wide listing format
 alias ll='ls -Fls'                # long listing format
 alias labc='ls -lap'              # alphabetical sort
 alias lf="ls -l | egrep -v '^d'"  # files only
 alias ldir="ls -l | egrep '^d'"   # directories only
-alias lla='ls -Al'                # List and Hidden Files
-alias las='ls -A'                 # Hidden Files
-alias lls='ls -l'                 # List
 
 # alias chmod commands
 alias mx='chmod a+x'
@@ -164,9 +163,6 @@ alias countfiles="for t in files links directories; do echo \`find . -type \${t:
 
 # To see if a command is aliased, a file, or a built-in command
 alias checkcommand="type -t"
-
-# Show open ports
-alias openports='netstat -nape --inet'
 
 # Alias's to show disk space and space used in a folder
 alias diskspace="du -S | sort -n -r |more"

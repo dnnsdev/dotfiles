@@ -21,6 +21,12 @@ usermod -aG sudo "$username"
 usermod -aG libvirt "$username"
 usermod -aG kvm "$username"
 
+sudoers_file="/etc/sudoers.d/$username"
+if [[ ! -f "$sudoers_file" ]]; then
+  echo "$username ALL=(ALL:ALL) ALL" > "$sudoers_file"
+  chmod 440 "$sudoers_file"
+fi
+
 # build directory
 builddir="$(pwd)"
 
