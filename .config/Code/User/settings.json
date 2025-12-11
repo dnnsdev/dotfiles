@@ -2,5 +2,6 @@
     "editor.fontFamily": "MesloLGS Nerd Font, Regular",
     "editor.fontLigatures": true,
     "explorer.confirmDelete": false,
-    "git.enableSmartCommit": true
+    "git.enableSmartCommit": true,
+    "github.copilot.nextEditSuggestions.enabled": true
 }
