@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Jetbrains Rider
+Icon=/home/dennis/software/jetbrains-rider/bin/rider.svg
+Exec=/home/dennis/software/jetbrains-rider/bin/rider
+Comment=Jetbrains Rider IDe
+Categories=Development;IDE;C#;.NET
+Terminal=false
