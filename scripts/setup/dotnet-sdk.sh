@@ -17,7 +17,7 @@ if ! command -v dotnet >/dev/null 2>&1; then
 
   rm packages-microsoft-prod.deb
 
-  apt-get install -y dotnet-sdk-9.0 dotnet-sdk-10.0
+  apt-get install -y dotnet-sdk-10.0
 fi
 
 # Verify installation
