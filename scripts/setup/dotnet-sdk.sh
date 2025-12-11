@@ -5,8 +5,8 @@ if ! command -v dotnet >/dev/null 2>&1; then
   # Detect Debian version dynamically
   debian_version=$(grep VERSION_ID /etc/os-release | cut -d= -f2 | tr -d '"')
   if [[ -z "$debian_version" ]]; then
-    echo "Warning: Could not detect Debian version, defaulting to 12" >&2
-    debian_version="12"
+    echo "Warning: Could not detect Debian version, defaulting to 13" >&2
+    debian_version="13"
   fi
 
   download_url="https://packages.microsoft.com/config/debian/${debian_version}/packages-microsoft-prod.deb"
@@ -17,7 +17,7 @@ if ! command -v dotnet >/dev/null 2>&1; then
 
   rm packages-microsoft-prod.deb
 
-  apt-get install -y dotnet-sdk-9.0
+  apt-get install -y dotnet-sdk-9.0 dotnet-sdk-10.0
 fi
 
 # Verify installation
