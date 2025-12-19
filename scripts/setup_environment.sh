@@ -79,6 +79,10 @@ if dpkg -l | grep -q kde; then
   apt-get autoremove --purge -y 'kde*' || true
 fi
 
+cp ./systemd/powertop.service /etc/systemd/system/powertop.service
+systemctl daemon-reload
+systemctl enable --now powertop.service
+
 # clean up apt
 apt autoremove
 apt autoclean

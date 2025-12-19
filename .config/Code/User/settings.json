@@ -3,5 +3,6 @@
     "editor.fontLigatures": true,
     "explorer.confirmDelete": false,
     "git.enableSmartCommit": true,
-    "github.copilot.nextEditSuggestions.enabled": true
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.viewSessions.orientation": "stacked"
 }
