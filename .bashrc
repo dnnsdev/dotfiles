@@ -103,8 +103,6 @@ alias mkdir='mkdir -p'
 alias ps='ps auxf --sort=-%mem'
 alias ping='ping -c 10 -i 0.2'
 alias multitail='multitail --no-repeat -c'
-alias scrot='grim' # uses grim to take screenshot on wayland
-alias sscrot='slurp | grim -g - $outputFile' #slurp makes sure that an area can be selected and then piped into grim
 
 # System update alias
 alias sysupdate='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean'
