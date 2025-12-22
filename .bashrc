@@ -179,7 +179,6 @@ alias ungz='tar -xvzf'
 alias sur='su - root'
 
 # alias to cleanup unused docker containers, images, networks, and volumes
-
 alias docker-clean=' \
   docker container prune -f ; \
   docker image prune -f ; \
