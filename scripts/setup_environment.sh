@@ -79,6 +79,9 @@ if dpkg -l | grep -q kde; then
   apt-get autoremove --purge -y 'kde*' || true
 fi
 
+# Set SUID on brightnessctl to allow non-root users to change brightness
+chmod u+s $(which brightnessctl)
+
 cp ./systemd/powertop.service /etc/systemd/system/powertop.service
 systemctl daemon-reload
 systemctl enable --now powertop.service
