@@ -2,21 +2,39 @@
 
 set -e # exit on error
 set -u # exit on undefined variable
+set -o pipefail # catch errors in pipes
+
+# Function to clean up
+cleanup() {
+  echo "[INFO] Running cleanup tasks."
+
+  # clean up apt
+  apt autoremove -y
+  apt autoclean -y
+
+  # clean up any downloaded debs in current directory
+  rm -f ./*.deb
+}
+
+trap cleanup EXIT
 
 # Check if script is run as root
 if [[ "$EUID" -ne 0 ]]; then
-  echo "You must be a root user to run this script" 2>&1
+  echo "[ERROR] You must be a root user to run this script" 2>&1
   exit 1
 fi
 
 # first user
 username=$(id -u -n 1000)
 if [[ -z "$username" ]]; then
-  echo "No user with UID 1000 found" >&2
+  echo "[ERROR] No user with UID 1000 found" >&2
   exit 1
 fi
 
+echo "[INFO] Setting up environment for user: $username"
+
 # add first user to several groups
+echo "[INFO] Adding $username to required groups."
 usermod -aG sudo "$username"
 usermod -aG libvirt "$username"
 usermod -aG kvm "$username"
@@ -30,6 +48,7 @@ fi
 # build directory
 builddir="$(pwd)"
 
+echo "[INFO] Creating user directories."
 mkdir -p "/home/$username/Pictures"
 mkdir -p "/home/$username/Pictures/backgrounds"
 mkdir -p "/home/$username/.ssh/sockets"
@@ -37,46 +56,50 @@ mkdir -p "/home/$username/.ssh/sockets"
 chown -R "$username:$username" "/home/$username"
 
 # prerequisites for stuff below
+echo "[INFO] Updating system and installing prerequisites."
 apt-get update
 apt-get upgrade
 apt-get install ca-certificates curl wget gpg apt-transport-https nala 
 
 # Source external setup scripts if they exist
+echo "[INFO] Running external setup scripts."
+
 for script in setup/audio.sh setup/eza.sh setup/fonts.sh setup/brave.sh setup/vscode.sh setup/spotify.sh setup/owncloud-client.sh setup/jellyfinmediaplayer.sh setup/starship.sh setup/rancher-desktop.sh setup/vesktop.sh; do
   if [[ -f "$script" ]]; then
-    echo "Sourcing $script"
+    echo "[INFO] Sourcing $script"
     source "$script"
   else
-    echo "Warning: $script not found, skipping..." >&2
+    echo "[WARNING] $script not found, skipping." >&2
   fi
 done
 
 # Install packages from pkglist if file exists
 if [[ -f "pkglist" ]]; then
+  echo "[INFO] Installing packages from pkglist."
+
   # Filter out comments and empty lines, then install
   packages=$(grep -v '^#' pkglist | grep -v '^$' | tr '\n' ' ')
   if [[ -n "$packages" ]]; then
     apt-get install -y $packages
   fi
 else
-  echo "Warning: pkglist file not found" >&2
+  echo "[WARNING] pkglist file not found" >&2
 fi
 
 # Remove packages from shitlist if file exists  
 if [[ -f "shitlist" ]]; then
+  echo "[INFO] Removing packages from shitlist."
   packages_to_remove=$(grep -v '^#' shitlist | grep -v '^$' | tr '\n' ' ')
   if [[ -n "$packages_to_remove" ]]; then
     apt-get remove -y $packages_to_remove || true  # Don't fail if packages don't exist
   fi
 else
-  echo "Warning: shitlist file not found" >&2
+  echo "[WARNING] shitlist file not found" >&2
 fi
-
-# Clean up any downloaded debs in current directory
-rm -f ./*.deb
 
 # Effort to remove KDE leftovers (be more careful)
 if dpkg -l | grep -q kde; then
+  echo "[INFO] Removing KDE packages."
   apt-get autoremove --purge -y 'kde*' || true
 fi
 
@@ -86,9 +109,5 @@ chmod u+s $(which brightnessctl)
 cp ./systemd/powertop.service /etc/systemd/system/powertop.service
 systemctl daemon-reload
 systemctl enable --now powertop.service
-
-# clean up apt
-apt autoremove
-apt autoclean
 
 echo "Environment setup completed successfully!"
