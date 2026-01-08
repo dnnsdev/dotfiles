@@ -123,16 +123,25 @@ alias bd='cd "$OLDPWD"'
 alias rmd='/bin/rm  --recursive --force --verbose '
 
 # Alias's for multiple directory listing commands
-alias la='ls -Alh'                # show hidden files
-alias ls='ls -aFh --color=always' # add colors and file type extensions
+# Better ls with exa/eza if available
+if command -v eza &> /dev/null; then
+    alias ls='eza --icons --group-directories-first'
+    alias la='eza -la --icons --group-directories-first'
+    alias ll='eza -l --icons --group-directories-first'
+    alias lt='eza -T --icons --level=2'
+else
+    alias la='ls -Alh'                # show hidden files
+    alias ls='ls -aFh --color=always' # add colors and file type extensions
+    alias ll='ls -Fls'                # long listing format
+    alias lt='ls -ltrh'               # sort by date
+fi
+
 alias lx='ls -lXBh'               # sort by extension
 alias lk='ls -lSrh'               # sort by size
 alias lc='ls -ltcrh'              # sort by change time
 alias lu='ls -lturh'              # sort by access time
 alias lr='ls -lRh'                # recursive ls
-alias lt='ls -ltrh'               # sort by date
 alias lm='ls -alh |more'          # pipe through 'more'
-alias ll='ls -Fls'                # long listing format
 alias labc='ls -lap'              # alphabetical sort
 alias lf="ls -l | egrep -v '^d'"  # files only
 alias ldir="ls -l | egrep '^d'"   # directories only
@@ -301,7 +310,12 @@ pwdtail() {
 	pwd | awk -F/ '{nlast = NF -1;print $nlast"/"$NF}'
 }
 
-alias cat='batcat'
+# check if bat or batcat is installed and alias cat to it
+if command -v batcat &> /dev/null; then
+    alias cat='batcat --style=auto'
+elif command -v bat &> /dev/null; then
+    alias cat='bat --style=auto'
+fi
 
 # IP address lookup
 alias whatismyip="whatsmyip"
@@ -336,46 +350,39 @@ trim() {
 # git additions because i'm lazy
 # inspired by 'GitHub Titus Additions'
 gitc() {
-    if ! git rev-parse --is-inside-work-tree &>/dev/null; then
-        echo "Error: Not a git repository." >&2
-        return 1
-    fi
-
-    if [[ $# -eq 0 ]]; then
-        echo "Error: Commit message required." >&2
-        echo "Usage: gitc <commit message>" >&2
-        return 1
-    fi
+    [[ ! -d .git ]] && echo "Not a git repo" && return 1
+    [[ $# -eq 0 ]] && echo "Usage: gitc <message>" && return 1
     
     git add -A
-    echo "Staged changes:"
-    git status --short
-    
-    if ! git commit -m "$*"; then
-        echo "Error: Commit failed." >&2
-        return 1
-    fi
+    echo " Staged changes:"
+    git status -s
+    git commit -m "$*" && echo " Committed: $*"
 }
 
 gits() {
-	if ! git rev-parse --is-inside-work-tree &>/dev/null; then
-        echo "Error: Not a git repository." >&2
-        return 1
-    fi
+	[[ ! -d .git ]] && echo "Not a git repo" && return 1
 
     git status --short
 }
 
 gitp() {
-	if ! git rev-parse --is-inside-work-tree &>/dev/null; then
-        echo "Error: Not a git repository." >&2
-        return 1
-    fi
+	[[ ! -d .git ]] && echo "Not a git repo" && return 1
     
-    if ! git push; then
-        echo "Error: Push failed." >&2
-        return 1
-    fi
+    local branch=$(git branch --show-current)
+    echo " Pushing to $branch."
+    git push && echo " Pushed successfully"
+}
+
+gitcp() {
+    gitc "$@" && gitp
+}
+
+gitpl() {
+    [[ ! -d .git ]] && echo "Not a git repo" && return 1
+    
+    local branch=$(git branch --show-current)
+    echo " Pulling from $branch."
+    git pull && echo " Pulled successfully"
 }
 
 # Check if the shell is interactive
@@ -383,9 +390,6 @@ if [[ $- == *i* ]]; then
     # Bind Ctrl+f to insert 'zi' followed by a newline
     bind '"\C-f":"zi\n"'
 fi
-
-eval "$(starship init bash)"
-eval "$(zoxide init bash)"
 
 # Function to safely add to PATH
 add_to_path() {
@@ -404,8 +408,16 @@ add_to_path "$HOME/.rd/bin"
 
 # Export display for playerctl
 export DISPLAY=:0.0
+# More secure HISTCONTROL
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help:history"
+
+# Don't save sensitive commands
+HISTIGNORE="${HISTIGNORE}:pass *:ssh *:scp *"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/home/dennis/.rd/bin:$PATH"
