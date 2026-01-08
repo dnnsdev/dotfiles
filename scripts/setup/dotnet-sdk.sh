@@ -1,5 +1,20 @@
 #!/bin/bash
 
+set -e
+
+DEB_FILE="packages-microsoft-prod.deb"
+
+# Function to clean up
+cleanup() {
+    if [[ -f "$DEB_FILE" ]]; then
+        echo "[INFO] Cleaning up $DEB_FILE."
+        rm -f "$DEB_FILE"
+    fi
+}
+
+# Ensure cleanup on exit
+trap cleanup EXIT
+
 if ! command -v dotnet >/dev/null 2>&1; then
 
   # Detect Debian version dynamically
@@ -11,11 +26,9 @@ if ! command -v dotnet >/dev/null 2>&1; then
 
   download_url="https://packages.microsoft.com/config/debian/${debian_version}/packages-microsoft-prod.deb"
 
-  wget -q "$download_url" -O packages-microsoft-prod.deb
+  wget -q "$download_url" -O "$DEB_FILE"
 
-  dpkg -i packages-microsoft-prod.deb
-
-  rm packages-microsoft-prod.deb
+  dpkg -i "$DEB_FILE"
 
   apt-get install -y dotnet-sdk-10.0
 fi
