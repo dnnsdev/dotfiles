@@ -32,6 +32,7 @@ builddir="$(pwd)"
 
 mkdir -p "/home/$username/Pictures"
 mkdir -p "/home/$username/Pictures/backgrounds"
+mkdir -p "/home/$username/.ssh/sockets"
 
 chown -R "$username:$username" "/home/$username"
 

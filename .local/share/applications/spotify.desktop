@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Spotify
+Icon=./spotify.svg
+Exec=spotify
+Comment=Spotify
+Categories=Music
+Terminal=false

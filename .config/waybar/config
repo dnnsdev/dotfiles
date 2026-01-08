@@ -81,7 +81,7 @@
     },
 
     "memory": {
-        "interval": 60,
+        "interval": 120,
         "format": "󰍛 {used:0.1f}G/{total:0.1f}G",
         "on-click": "pgrep -x htop > /dev/null || /usr/bin/foot htop",
         "states": {
@@ -91,7 +91,7 @@
     },
 
     "cpu": {
-        "interval": 10,
+        "interval": 20,
         "format": "󰻠 {usage}%",
         "max-length": 10,
         "states": {
@@ -140,6 +140,7 @@
         "exec": "~/.config/waybar/scripts/playerctl.sh",
         "format": "  {}",
         "max-length": 40,
+        "interval": 20,
         "on-click": "playerctl --player=spotify play-pause",
         "on-scroll-up": "playerctl --player=spotify next",
         "on-scroll-down": "playerctl --player=spotify previous"
