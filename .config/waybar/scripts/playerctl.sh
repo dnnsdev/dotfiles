@@ -1,5 +1,4 @@
 #!/bin/sh
-
 set -e
 
 # Handle termination signals gracefully
@@ -15,7 +14,7 @@ while true; do
         artist=$(echo "$metadata" | cut -d'|' -f2)
         title=$(echo "$metadata" | cut -d'|' -f3)
         
-        if [ "$status" = "Playing" ]; then
+        if [ $status = "Playing" ]; then
             player_icon="▶"
         else
             player_icon="⏸"
@@ -24,6 +23,6 @@ while true; do
         echo "$player_icon $artist - $title"
     fi
 
-    sleep 3
+    sleep 5
 
   done
