@@ -1,32 +1,33 @@
+/* Wofi Style Configuration File */
+
 window {
     margin: 0px;
-    border: 1px solid #928374;
+    border: 2px solid #586e75;
     background-color: #002b36;
     width: 30%;
 }
 
-/* Remove the search icon */
-#input > image.left {
-    -gtk-icon-transform:scaleX(0);
-}
-    
 #input {
-    margin: 5px;
+    margin: 8px;
+    padding: 8px 12px;
     border: none;
-    color: #839496;
+    border-radius: 4px;
+    color: #93a1a1;
     background-color: #073642;
+    outline: none;
 }
     
 #inner-box {
     margin: 5px;
+    padding: 5px;
     border: none;
-    background-color: #002b36;
+    background-color: transparent;
 }
     
 #outer-box {
     margin: 5px;
     border: none;
-    background-color: #002b36;
+    background-color: transparent;
 }
     
 #scroll {
@@ -38,8 +39,24 @@ window {
     margin: 5px;
     border: none;
     color: #839496;
+    font-weight: 500;
+}
+
+#img {
+    margin-right: 10px;
+    padding: 2px;
 }
     
+#entry {
+    padding: 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
 #entry:selected {
     background-color: #073642;
+    color: #fdf6e3;
+}
+#entry:selected #text {
+    color: #fdf6e3;
+    font-weight: 600;
 }
