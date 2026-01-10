@@ -64,10 +64,25 @@ apt-get install ca-certificates curl wget gpg apt-transport-https nala
 # Source external setup scripts if they exist
 echo "[INFO] Running external setup scripts."
 
-for script in setup/audio.sh setup/eza.sh setup/fonts.sh setup/brave.sh setup/vscode.sh setup/spotify.sh setup/owncloud-client.sh setup/jellyfinmediaplayer.sh setup/starship.sh setup/rancher-desktop.sh setup/vesktop.sh; do
+# Define setup scripts to execute
+setup_scripts=(
+  "setup/audio.sh"
+  "setup/eza.sh"
+  "setup/fonts.sh"
+  "setup/brave.sh"
+  "setup/vscode.sh"
+  "setup/spotify.sh"
+  "setup/owncloud-client.sh"
+  "setup/jellyfinmediaplayer.sh"
+  "setup/starship.sh"
+  "setup/rancher-desktop.sh"
+  "setup/vesktop.sh"
+)
+
+for script in "${setup_scripts[@]}"; do
   if [[ -f "$script" ]]; then
     echo "[INFO] Sourcing $script"
-    source "$script"
+    source "$script" || echo "[ERROR] Failed to source $script" >&2
   else
     echo "[WARNING] $script not found, skipping." >&2
   fi
