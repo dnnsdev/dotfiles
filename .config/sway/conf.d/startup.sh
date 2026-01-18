@@ -8,7 +8,7 @@ sleep 2
 # Mount filesystems
 mount -a
 
-apps=( owncloud vesktop swaync rancher-desktop keepassxc )
+apps=( owncloud vesktop swaync rancher-desktop keepassxc wlsunset )
 
 for app in "${apps[@]}"; do
     if command -v "$app" &> /dev/null; then
