@@ -12,6 +12,8 @@ gir1.2-gtk-3.0
 python3
 qemu-system-x86
 qemu-utils
+wlsunset
+geoclue-2.0
 fim
 rancher-desktop
 remmina
