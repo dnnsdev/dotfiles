@@ -1,4 +1,3 @@
-nala install fonts-font-awesome -y
 #!/bin/bash
 set -euo pipefail
 
@@ -11,7 +10,7 @@ for cmd in nala wget unzip; do
 done
 
 # Use current user if $username is not set
-FONT_USER="${username:-$USER}"
+FONT_USER=$(id -u -n 1000)
 FONT_DIR="/home/$FONT_USER/.fonts"
 mkdir -p "$FONT_DIR"
 

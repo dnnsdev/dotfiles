@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$EUID" -ne 0 ]; then
-  echo "[ERROR] This script must be run as root (use sudo)"
+  echo "[ERROR] This script must be run as root."
   exit 1
 fi
 

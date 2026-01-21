@@ -92,7 +92,7 @@ setup_scripts=(
 for script in "${setup_scripts[@]}"; do
   if [[ -f "$script" ]]; then
     echo "[INFO] Sourcing $script"
-    source "$script" || echo "[ERROR] Failed to source $script" >&2
+    source "$script" || { echo "[ERROR] Failed to source $script, continuing." >&2; }
   else
     echo "[WARNING] $script not found, skipping." >&2
   fi
