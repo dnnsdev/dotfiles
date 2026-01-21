@@ -33,17 +33,21 @@ fi
 
 echo "[INFO] Setting up environment for user: $username"
 
-# ensure groups exist
-echo "[INFO] Ensuring required groups exist."
-groupadd -f sudo
-groupadd -f libvirt
-groupadd -f kvm
+# Define groups that the user needs to be added to
+user_groups=(
+  "sudo"
+  "libvirt"
+  "kvm"
+)
 
-# add first user to several groups
-echo "[INFO] Adding $username to required groups."
-usermod -aG sudo "$username"
-usermod -aG libvirt "$username"
-usermod -aG kvm "$username"
+# user group assignments
+for group in "${user_groups[@]}"; do
+  echo "[INFO] Ensuring required group ($group) exists."
+  groupadd -f "$group"
+
+  echo "[INFO] Adding $username to required group ($group)."
+  usermod -aG "$group" "$username"
+done
 
 sudoers_file="/etc/sudoers.d/$username"
 if [[ ! -f "$sudoers_file" ]]; then
