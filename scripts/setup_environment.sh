@@ -33,6 +33,12 @@ fi
 
 echo "[INFO] Setting up environment for user: $username"
 
+# ensure groups exist
+echo "[INFO] Ensuring required groups exist."
+groupadd -f sudo
+groupadd -f libvirt
+groupadd -f kvm
+
 # add first user to several groups
 echo "[INFO] Adding $username to required groups."
 usermod -aG sudo "$username"
@@ -106,7 +112,7 @@ if [[ -f "shitlist" ]]; then
   echo "[INFO] Removing packages from shitlist."
   packages_to_remove=$(grep -v '^#' shitlist | grep -v '^$' | tr '\n' ' ')
   if [[ -n "$packages_to_remove" ]]; then
-    apt-get remove -y $packages_to_remove || true  # Don't fail if packages don't exist
+    apt-get remove -y $packages_to_remove || true
   fi
 else
   echo "[WARNING] shitlist file not found" >&2

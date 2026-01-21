@@ -17,10 +17,14 @@ trap cleanup EXIT
 
 if ! command -v dotnet >/dev/null 2>&1; then
 
+  echo "[INFO] .NET SDK not found. Proceeding with installation."
+
   # Detect Debian version dynamically
   debian_version=$(grep VERSION_ID /etc/os-release | cut -d= -f2 | tr -d '"')
   if [[ -z "$debian_version" ]]; then
-    echo "Warning: Could not detect Debian version, defaulting to 13" >&2
+    echo "[INFO] VERSION_ID not found in /etc/os-release."
+    echo "[INFO] Defaulting to Debian 13."
+
     debian_version="13"
   fi
 
@@ -30,15 +34,16 @@ if ! command -v dotnet >/dev/null 2>&1; then
 
   dpkg -i "$DEB_FILE"
 
+  apt-get update
   apt-get install -y dotnet-sdk-10.0
 fi
 
 # Verify installation
 if command -v dotnet >/dev/null 2>&1; then
-  echo ".NET installation verified"
+  echo "[INFO] .NET installation verified"
   dotnet --version
-  echo "Available SDKs:"
+  echo "[INFO] Available SDKs:"
   dotnet --list-sdks
 else
-  echo "Warning: .NET installation completed but command not found in PATH" >&2
+  echo "[WARNING] .NET installation completed but command not found in PATH" >&2
 fi

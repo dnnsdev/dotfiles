@@ -1,10 +1,11 @@
 #!/bin/bash
 
 if ! command -v rancher-desktop >/dev/null 2>&1; then
+  echo "[INFO] Installing rancher-desktop."
   # Get the username (assuming it's the user with UID 1000)
   username=$(getent passwd 1000 | cut -d: -f1)
   if [[ -z "$username" ]]; then
-    echo "Error: No user with UID 1000 found" >&2
+    echo "[ERROR] No user with UID 1000 found" >&2
     exit 1
   fi
   # add user to kvm group
